@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+footer {
+  margin: 0 100px;
+  margin-top: 50px;
+  display: flex;
+
+  font-family: Mulish;
+  font-size: 14px;
+  color: #4e4b66;
+}
+
+.footerRight,
+.footerCenterRight,
+.footerCenterLeft,
+.footerLeft {
+  flex: 1;
+}
+
+h2 {
+  margin-bottom: 30px;
+  font-family: Mulish;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.footerCenterLeft p,
+.footerCenterLeft h2 {
+  font-family: Mulish;
+  padding-left: 110px;
+}
+
+.footerCenterLeft p {
+  margin: 10px 0;
+}
+
+.footerCenterRight img {
+  padding-right: 40px;
+}
+
+.cineOne {
+  margin: 10px 0;
+}
+
+.facebook,
+.instagram,
+.tweeter,
+.youtube {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.footerRight p {
+  margin: auto 20px;
+}
+
+.instagram img {
+  margin-left: -2px;
+}
+
+.instagram p {
+  margin-left: 10px;
+}
+
+.tweeter p {
+  margin-left: 15px;
+}
+
+.youtube p {
+  margin-left: 12px;
+}
+
+.copyRight {
+  display: flex;
+  justify-content: center;
+  font-family: Mulish;
+  font-size: 14px;
+  line-height: 18px;
+  color: #4e4b66;
+  margin-bottom: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+  footer {
+    flex-direction: column;
+    margin: 0 20px;
+  }
+
+  .footerCenterLeft p,
+  .footerCenterLeft h2 {
+  padding-left: 0px;
+  }
+
+  .footerCenterLeft, .footerCenterRight, .footerRight, .copyRight {
+    margin-top: 20px;
+  }
+
+  .footerCenterRight {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footerCenterRight img {
+    width: 30%;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+  }
+}

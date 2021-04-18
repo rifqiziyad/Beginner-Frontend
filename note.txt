@@ -1,0 +1,5 @@
+1. home page
+2. movie detail
+3. order page
+4. payment
+5. admin

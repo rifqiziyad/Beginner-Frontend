@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+.navbar {
+  padding: 20px 100px;
+  background-color: white;
+  color: #414141;
+  font-family: "Mulish";
+  font-size: 16px;
+  margin-bottom: 50px;
+}
+
+.navLeft {
+  margin-left: 40px;
+}
+
+.navRight {
+  margin: 0 40px;
+}
+
+.button {
+  background: #5f2eea;
+  padding: 5px 40px;
+  border: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar {
+    padding: 30px;
+  }
+
+  .navLeft, .navRight {
+    margin: 0;
+  }
+
+  .formRight {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dropdown-toggle {
+    border: solid black;
+    color: white;
+  }
+
+  .navRight {
+    margin: 10px 0;
+  }
+}
+
+/* Reset CSS */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
