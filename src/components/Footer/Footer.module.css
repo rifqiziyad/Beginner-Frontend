@@ -5,7 +5,6 @@ footer {
   margin: 0 100px;
   margin-top: 50px;
   display: flex;
-
   font-family: Mulish;
   font-size: 14px;
   color: #4e4b66;
@@ -29,7 +28,7 @@ h2 {
 .footerCenterLeft p,
 .footerCenterLeft h2 {
   font-family: Mulish;
-  padding-left: 110px;
+  padding-left: 80px;
 }
 
 .footerCenterLeft p {
@@ -90,10 +89,13 @@ h2 {
 
   .footerCenterLeft p,
   .footerCenterLeft h2 {
-  padding-left: 0px;
+    padding-left: 0px;
   }
 
-  .footerCenterLeft, .footerCenterRight, .footerRight, .copyRight {
+  .footerCenterLeft,
+  .footerCenterRight,
+  .footerRight,
+  .copyRight {
     margin-top: 20px;
   }
 

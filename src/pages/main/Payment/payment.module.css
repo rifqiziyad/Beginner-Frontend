@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+.container {
+  border: black 1px solid;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: rgb(241, 241, 241);
+}
+
+.row1 {
+  justify-content: space-around;
+}
+
+.movieSelected {
+  margin: 20px 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+h2 {
+  font-family: Mulish;
+  font-weight: bold;
+  font-size: 24px;
+  color: #14142b;
+}
+
+.buttonChange {
+  background: #bfbfe7;
+  opacity: 0.8;
+  border: none;
+  border-radius: 4px;
+  font-family: Mulish;
+  font-weight: bold;
+  font-size: 14px;
+  color: #5f2eea;
+}
+
+.buttonChange:hover {
+  background-color: #5f2eea;
+  color: white;
+}
+
+.chooseYourSeat {
+  background-color: white;
+  margin: 20px 10px;
+  height: 500px;
+  border-radius: 4px;
+}
+
+.buttonCheckout {
+  margin-bottom: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonCheckoutNow {
+  border: 2px solid #5f2eea;
+  box-sizing: border-box;
+  border-radius: 16px;
+  padding: 10px 50px;
+  color: #5f2eea;
+  font-family: Mulish;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.buttonCheckoutNow:hover {
+  background-color: #5f2eea;
+  border: 2px solid #5f2eea;
+}
+
+.col2 {
+  padding: 0;
+  font-family: Mulish;
+  text-align: center;
+}
+
+.sideRight {
+  background-color: white;
+  margin: 20px 10px;
+  border-radius: 4px;
+  box-shadow: 0px 8px 24px rgba(17, 17, 17, 0.08);
+}
+
+.info p {
+  color: #6b6b6b;
+}
+
+.info h3 {
+  font-weight: 600;
+}
+
+.orderInfo {
+  text-align: start;
+}
+
+.col2 img,
+.col2 h1 {
+  margin: 5px;
+}
+
+.col2 img {
+  margin-top: 20px;
+}
+
+.info {
+  padding: 20px 20px;
+}
+
+.movieName,
+.date,
+.oneTicketPrice,
+.seatCoosed,
+.totalPayment {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.totalPayment h5 {
+  color: #000000;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+hr {
+  margin: 20px -20px;
+}
+
+.totalPayment h4 {
+  color: #5f2eea;
+  font-weight: bold;
+  font-size: 24px;
+}
