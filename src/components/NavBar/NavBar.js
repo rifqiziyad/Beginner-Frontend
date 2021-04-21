@@ -24,6 +24,7 @@ class NavBar extends Component {
             </Nav>
             <Form inline className={styles.formRight}>
               <NavDropdown
+                className={styles.location}
                 title="Location"
                 id="basic-nav-dropdown"
               >

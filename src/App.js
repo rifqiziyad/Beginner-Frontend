@@ -6,7 +6,7 @@ import BasicMovieDetail from "./pages/learning/MovieDetail/MovieDetail";
 import HomePage from "./pages/main/Home/HomePage";
 import movieDetail from "./pages/main/Movie Detail/movieDetail";
 
-import Payment from "./pages/main/Payment/payment";
+import orderPage from "./pages/main/Order Page/orderPage";
 
 class App extends Component {
   render() {
@@ -16,14 +16,14 @@ class App extends Component {
           <Route path="/learning/basic-react" exact component={BasicReact} />
           <Route path="/learning/basic-home" exact component={BasicHome} />
           <Route
-            path="/learning/basic-movie-detail"
+            path="/learning/basic-movie-detail/:id"
             exact
             component={BasicMovieDetail}
           />
           {/* ============================================ */}
           <Route path="/" exact component={HomePage} />
           <Route path="/movie-detail" exact component={movieDetail} />
-          <Route path="/payment" exact component={Payment} />
+          <Route path="/order-page" exact component={orderPage} />
         </Switch>
       </Router>
     );

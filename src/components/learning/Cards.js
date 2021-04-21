@@ -1,7 +1,18 @@
 import React, { Component } from "react";
 import { Button, Card } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
 
 class Cards extends Component {
+  handleMovieDetail = (id) => {
+    // [1] = biasanya digunakan untuk handling pagination, sort, search
+    // this.props.history.push(`/learning/basic-movie-detail?movieId=${id}`);
+    // // [2] = jika datanya tidak mau ditampilkan di url
+    // this.props.history.push(`/learning/basic-movie-detail?movieId=`, {
+    //   data: id,
+    // });
+    // // [3] = bisa digunakan untuk detail product/data
+    this.props.history.push(`/learning/basic-movie-detail/${id}`);
+  };
   render() {
     console.log(this.props);
     const {
@@ -22,6 +33,12 @@ class Cards extends Component {
             <Card.Title>{movie_name}</Card.Title>
             <Card.Text>{movie_category}</Card.Text>
             <p>{movie_release_date}</p>
+            <Button
+              variant="primary"
+              onClick={() => this.handleMovieDetail(movie_id)}
+            >
+              Detail
+            </Button>
             <Button variant="primary" onClick={() => handleUpdate(data)}>
               Update
             </Button>
@@ -36,4 +53,4 @@ class Cards extends Component {
   }
 }
 
-export default Cards;
+export default withRouter(Cards);

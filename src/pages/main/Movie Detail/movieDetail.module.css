@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+.container {
+  background-color: rgb(231, 229, 229);
+  padding-bottom: 70px;
+}
+.row {
+  display: flex;
+  justify-content: space-evenly;
+  background-color: white;
+  padding: 70px 0;
+}
+
+.col1 img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.col1 {
+  border: 2px solid #dedede;
+  box-sizing: border-box;
+  border-radius: 16px;
+  padding: 30px;
+}
+
+.col2 {
+  font-family: Mulish;
+  padding: 0;
+}
+
+.col2 h2 {
+  margin-bottom: 20px;
+}
+
+.col2 h1 {
+  font-size: 18px;
+  color: #4e4b66;
+  margin-bottom: 50px;
+}
+
+.info1,
+.info2 {
+  display: flex;
+  margin-top: 40px;
+}
+
+.duration {
+  margin-right: 80px;
+}
+
+.releaseDate {
+  margin-right: 120px;
+}
+
+.content p {
+  font-size: 14px;
+  color: #8692a6;
+  margin-bottom: 10px;
+}
+
+.content h3 {
+  font-size: 16px;
+  color: #121212;
+}
+
+.col2 h5 {
+  font-weight: 600;
+  font-size: 20px;
+  color: #000000;
+  margin-bottom: 20px;
+}
+
+.col2 .synopsis {
+  font-size: 16px;
+  color: #4e4b66;
+  line-height: 32px;
+}
+
+.showtimes {
+  margin-top: 80px;
+  text-align: center;
+  margin: 100px 0;
+}
+
+.dateLocation {
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.location {
+  border: rgb(211, 204, 204) solid 1px;
+  display: flex;
+  padding: 0;
+  justify-content: space-between;
+  margin-left: 30px;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.location img {
+  width: 20px;
+  height: 20px;
+  margin-top: 7px;
+  margin-right: 30px;
+  margin-left: 15px;
+}
+
+.titleLocation a {
+  color: black;
+}
+
+.cards {
+  display: flex;
+  justify-content: space-around;
+}
+
+.cinemaCard {
+  background-color: white;
+  width: 360px;
+  padding: 20px;
+  font-family: Mulish;
+  border-radius: 4px;
+  box-shadow: 10px 10px 20px rgb(201, 194, 194);
+}
+
+.cinema {
+  display: flex;
+}
+
+.address p {
+  font-family: Mulish;
+  font-weight: 300;
+  font-size: 12px;
+  color: #6e7191;
+  margin-top: 10px;
+  line-height: 18px;
+}
+
+.address h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.cinema img {
+  margin-right: 30px !important;
+  margin: auto;
+}
+
+.time {
+  display: flex;
+  flex-wrap: wrap;
+  line-height: 30px;
+}
+
+.time h3 {
+  margin-right: 13px;
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.buttonBookNow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-light {
+  background-color: black !important;
+  color: red;
+}

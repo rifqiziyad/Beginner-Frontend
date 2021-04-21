@@ -8,52 +8,54 @@ import imgFacebook from "../../assets/img/fb.png";
 import imgInstagram from "../../assets/img/ig.png";
 import imgYoutube from "../../assets/img/yt.png";
 import imgTwitter from "../../assets/img/tweeter.png";
+import { Row, Col } from "react-bootstrap";
 
 class Footer extends Component {
   render() {
     return (
       <>
-        <footer>
-          <div className={styles.footerLeft}>
+        <Row className={styles.footer}>
+          <Col className={styles.footerLeft}>
             <img src={imgLogo} alt="Logo" />
             <p>
               Stop waiting in line. Buy tickets conveniently, watch movies
               quietly.
             </p>
-          </div>
-          <div className={styles.footerCenterLeft}>
+          </Col>
+          <Col className={styles.footerCenterLeft}>
             <h2>Explore</h2>
             <p>Cinemas</p>
             <p>Movie List</p>
             <p>My Ticket</p>
             <p>Notification</p>
-          </div>
-          <div className={styles.footerCenterRight}>
+          </Col>
+          <Col className={styles.footerCenterRight}>
             <h2>Our Sponsor</h2>
             <img src={imgEbuid} alt="ebuid" />
             <img className={styles.cineOne} src={imgCineone} alt="cineone21" />
             <img src={imgHiflix} alt="hiflix" />
-          </div>
-          <div className={styles.footerRight}>
+          </Col>
+          <Col className={styles.footerRight}>
             <h2>Follow us</h2>
-            <div className={styles.facebook}>
+            <Col className={styles.facebook}>
               <img src={imgFacebook} alt="fb" />
               <p>Tickitz Cinema id</p>
-            </div>
-            <div className={styles.instagram}>
+            </Col>
+            <Col className={styles.instagram}>
               <img src={imgInstagram} alt="ig" />
               <p>tickitz.id</p>
-            </div>
-            <div className={styles.tweeter}>
+            </Col>
+            <Col className={styles.tweeter}>
               <img src={imgTwitter} alt="tweeter" />
               <p>tickitz.id</p>
-            </div>
-            <div className={styles.youtube}>
+            </Col>
+            <Col className={styles.youtube}>
               <img src={imgYoutube} alt="yt" />
               <p>Tickitz Cinema id</p>
-            </div>
-          </div>
-        </footer>
+            </Col>
+          </Col>
+        </Row>
+
         <footer className={styles.copyRight}>
           © 2020 Tickitz. All Rights Reserved.
         </footer>

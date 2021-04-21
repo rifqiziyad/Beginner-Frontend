@@ -15,7 +15,7 @@ class HomePage extends Component {
     return (
       <>
         <Navbar />
-        <Container className={styles.container}>
+        <Container>
           <Row className={styles.row1}>
             <Col sm={6} className={styles.col1}>
               <p> Nearest Cinema, Newest Movie,</p>

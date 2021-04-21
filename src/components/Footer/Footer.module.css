@@ -1,24 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 
-footer {
+.footer {
   margin: 0 100px;
-  margin-top: 50px;
   display: flex;
   font-family: Mulish;
   font-size: 14px;
   color: #4e4b66;
+  padding: 40px 0;
 }
 
 .footerRight,
 .footerCenterRight,
 .footerCenterLeft,
 .footerLeft {
-  flex: 1;
+  padding: 0;
 }
 
-h2 {
-  margin-bottom: 30px;
+.footer h2 {
+  margin-bottom: 20px;
   font-family: Mulish;
   color: black;
   font-weight: bold;
@@ -28,7 +28,7 @@ h2 {
 .footerCenterLeft p,
 .footerCenterLeft h2 {
   font-family: Mulish;
-  padding-left: 80px;
+  padding-left: 100px;
 }
 
 .footerCenterLeft p {
@@ -45,10 +45,15 @@ h2 {
 
 .facebook,
 .instagram,
-.tweeter,
-.youtube {
+.tweeter {
   display: flex;
   margin-bottom: 20px;
+  padding: 0;
+}
+
+.youtube {
+  display: flex;
+  padding: 0;
 }
 
 .footerRight p {
@@ -82,7 +87,7 @@ h2 {
 }
 
 @media only screen and (max-width: 600px) {
-  footer {
+  .footer {
     flex-direction: column;
     margin: 0 20px;
   }
@@ -111,4 +116,10 @@ h2 {
   h2 {
     margin-bottom: 20px;
   }
+
+  /* .footerCenterLeft,
+  .footerCenterRight,
+  .footerRight {
+    display: flex;
+  } */
 }

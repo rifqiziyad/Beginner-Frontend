@@ -1,23 +1,17 @@
-.containerCenter {
-  text-align: center;
-}
-
-.headingColor {
-  font-size: 50px;
-}
-
 .rowSeat {
   flex-wrap: nowrap;
 }
 
 .colSeat {
   padding: 0 5px;
+  margin: auto;
 }
 
 .seat {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border-radius: 25%;
+  margin-bottom: 3px;
 }
 
 .seatAvailable {
