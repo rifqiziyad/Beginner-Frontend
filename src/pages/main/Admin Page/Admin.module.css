@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+.container {
+  padding: 50px 30px;
+  background-color: rgba(242, 242, 243, 0.815);
+  font-family: Mulish;
+}
+
+.rowMain {
+  margin: 0;
+  padding: 0 30px;
+}
+
+.rowMain h2 {
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.row {
+  background-color: white;
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.cardMovie {
+  padding: 20px;
+  background: #ffffff;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: 0.5px solid #dedede;
+}
+
+.partImg {
+  padding-top: 20px;
+}
+
+.partImg img {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.synopsis {
+  margin-bottom: 30px;
+}
+
+.inputName {
+  border: 1px solid #dedede;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 20px 20px;
+}
+
+.label {
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  margin: 40px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn .buttonReset {
+  margin-right: 30px;
+}
+
+.buttonReset,
+.buttonSubmit {
+  font-weight: bold;
+  border: #5f2eea solid 2px;
+  box-shadow: 0px 8px 24px rgba(95, 46, 234, 0.24);
+  border-radius: 4px;
+  background-color: rgba(242, 242, 243, 0.815);
+  padding: 8px 50px;
+}
+
+.buttonReset:hover,
+.buttonSubmit:hover {
+  background-color: #5f2eea;
+  color: white;
+  border: #5f2eea solid 2px;
+}
+
+.row2 {
+  /* border: solid black 1px; */
+  font-family: Mulish;
+}
+
+.row2 .h2 {
+  font-weight: bold;
+  font-size: 24px;
+  color: #000000;
+  margin: auto;
+}
+
+.sort {
+  background-color: white;
+  color: black;
+  border: 1px solid #dedede;
+  padding: 8px 15px;
+}
+
+.sort:hover {
+  background-color: #5f2eea;
+  border: blueviolet solid 1px;
+  color: white;
+}
+
+.cards {
+  display: flex;
+  margin-top: 50px;
+  font-family: "Mulish", sans-serif;
+  margin: 50px auto;
+}
+
+.imgCard img {
+  width: 159px;
+  height: 244px;
+  border-radius: 5px;
+}
+
+.imgCard {
+  background: #ffffff;
+  border: 0.5px solid #dedede;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0px 8px 30px rgba(186, 186, 186, 0.25);
+  border-radius: 8px;
+  margin: 0 20px;
+  text-align: center;
+}
+
+.movieName {
+  font-family: Mulish;
+  font-weight: bold;
+  font-size: 18px;
+  color: #14142b;
+  margin-bottom: 10px;
+}
+
+.genre {
+  font-family: Open Sans;
+  font-size: 12px;
+  color: #a0a3bd;
+  margin-bottom: 10px;
+}
+
+.buttonUpdate,
+.buttonDelete {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.buttonUpdate {
+  border: 1px solid #5f2eea;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.buttonUpdate:hover {
+  color: white;
+  background-color: #5f2eea;
+  box-shadow: 0px 8px 30px rgba(95, 46, 234, 0.3);
+}
+
+.buttonDelete {
+  border: red solid 1px;
+  background-color: white;
+  border-radius: 4px;
+  color: black;
+}

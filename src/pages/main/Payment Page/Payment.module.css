@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+.container {
+  padding: 50px 0;
+  background-color: rgba(242, 242, 243, 0.815);
+}
+
+.col1 h2,
+.col2 h2 {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.row {
+  justify-content: space-evenly;
+  margin: 0;
+  font-family: Mulish;
+}
+
+.col1,
+.col2 {
+  padding: 0;
+}
+
+.date,
+.title,
+.cinema,
+.numberTicket,
+.total {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+
+.date,
+.title,
+.cinema,
+.numberTicket {
+  border-bottom: rgb(208, 211, 221) solid 1px;
+}
+
+.col1 h2,
+.col2 h2 {
+  margin-bottom: 30px;
+}
+
+.paymentInfo,
+.personalInfo {
+  padding: 30px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.date h5,
+.title h5,
+.cinema h5,
+.numberTicket h5,
+.total h5 {
+  font-size: 20px;
+  color: #6b6b6b;
+}
+
+.total p {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.date p,
+.title p,
+.cinema p,
+.numberTicket p,
+.total p {
+  font-size: 20px;
+  color: #000000;
+}
+
+.paymentMethod {
+  margin: 50px 0;
+  border: black solid 1px;
+}
+
+.name,
+.mail {
+  border: 1px solid #dedede;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 15px;
+}
+
+.fullName p,
+.email p,
+.phone p {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.fullName p {
+  margin-top: 5px;
+}
+
+.phoneNumber {
+  display: flex;
+  border: 1px solid #dedede;
+  margin-bottom: 30px;
+  border-radius: 4px;
+}
+
+.phoneNumber h1 {
+  padding: 15px;
+}
+
+.phoneNumber .number {
+  border-right: 1px solid #dedede;
+}
+
+.warning {
+  display: flex;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 13px;
+  margin-bottom: 10px;
+  background: rgba(244, 183, 64, 0.3);
+}
+
+.warning h5 {
+  margin-left: 20px;
+  margin-top: 5px;
+}

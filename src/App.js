@@ -5,8 +5,10 @@ import BasicHome from "./pages/learning/Home/Home";
 import BasicMovieDetail from "./pages/learning/MovieDetail/MovieDetail";
 import HomePage from "./pages/main/Home/HomePage";
 import movieDetail from "./pages/main/Movie Detail/movieDetail";
-
 import orderPage from "./pages/main/Order Page/orderPage";
+import Payment from "./pages/main/Payment Page/Payment";
+import paymentMethod from "./components/PaymentMethod/paymentMethod";
+import Admin from "./pages/main/Admin Page/Admin";
 
 class App extends Component {
   render() {
@@ -24,6 +26,9 @@ class App extends Component {
           <Route path="/" exact component={HomePage} />
           <Route path="/movie-detail" exact component={movieDetail} />
           <Route path="/order-page" exact component={orderPage} />
+          <Route path="/payment" exact component={Payment} />
+          <Route path="/payment-method" exact component={paymentMethod} />
+          <Route path="/Admin" exact component={Admin} />
         </Switch>
       </Router>
     );

@@ -1,0 +1,88 @@
+.col {
+  margin-top: 50px;
+  font-family: Mulish;
+  background-color: rgba(242, 242, 243, 0.815);
+  padding: 0;
+}
+
+.paymentMethod {
+  margin-top: 30px !important;
+  margin: 0;
+  background-color: white;
+  padding: 40px;
+  border-radius: 4px;
+}
+
+.googlePay,
+.visa,
+.gopay,
+.paypal,
+.dana,
+.bca,
+.bri,
+.ovo {
+  border: solid rgb(235, 227, 227) 1px;
+  width: 146px;
+  height: 56px;
+  border-radius: 4px;
+  margin: 10px;
+  position: relative;
+}
+
+.googlePay img,
+.visa img,
+.gopay img,
+.paypal img,
+.dana img,
+.bca img,
+.bri img,
+.ovo img {
+  /* display: block;
+  margin-left: auto;
+  margin-right: auto; */
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.or {
+  font-size: 16px;
+  color: #a0a3bd;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.text {
+  margin-top: 30px;
+}
+
+.textOr {
+  margin-top: 30px;
+}
+
+.textPurple {
+  color: #5f2eea;
+}
+
+.button {
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  border: #5f2eea solid 2px;
+  padding: 10px 80px;
+  background-color: rgba(242, 242, 243, 0.815);
+  color: #5f2eea;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background-color: #5f2eea;
+  color: white;
+  border: #5f2eea solid 2px;
+}
