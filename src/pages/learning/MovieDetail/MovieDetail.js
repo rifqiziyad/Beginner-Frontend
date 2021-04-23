@@ -16,11 +16,11 @@ class MovieDetail extends Component {
   componentDidMount() {
     // [1]
     // const urlParam = qs.parse(this.props.location.search);
+    // console.log(urlParam.movieId);
     // [2]
-    console.log(this.props.location.state);
+    // console.log(this.props.location.state);
     // [3]
     console.log(this.props.match.params);
-    // console.log(urlParam.movieId);
     // untuk page movie detail ----------------------
     // proses get data movie by id
     // proses get data premiere/bioskop by id

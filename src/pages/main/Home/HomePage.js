@@ -1,17 +1,61 @@
 import React, { Component } from "react";
 import Navbar from "../../../components/NavBar/NavBar";
 import Footer from "../../../components/Footer/Footer";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 import styles from "./home.module.css";
 import img1 from "../../../assets/img/image-1.png";
 import img2 from "../../../assets/img/image-2.png";
 import img3 from "../../../assets/img/image-3.png";
-import card1 from "../../../assets/img/card-movie1.png";
-// import card2 from "../../../assets/img/card-movie2.png"
-// import card3 from "../../../assets/img/card-movie3.png"
+import Cards from "../../../components/Cards/Card";
+import Cards2 from "../../../components/Cards2/Card2";
+import axiosApiIntances from "../../../utils/axios";
 
 class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      form: {
+        movieName: "",
+        movieCategory: "",
+        movieReleaseDate: "",
+      },
+      data: [],
+      pagination: {},
+      page: 1,
+      limit: 5,
+      isLoading: false,
+      isUpdate: false,
+      id: "",
+    };
+  }
+
+  componentDidMount() {
+    this.getData();
+  }
+
+  getData = () => {
+    console.log("Get Data !");
+    const { page, limit } = this.state;
+    this.setState({ isLoading: true });
+    axiosApiIntances
+      .get(`movie?page=${page}&limit=${limit}&search=&sort=movie_id ASC`)
+      .then((res) => {
+        this.setState({ data: res.data.data, pagination: res.data.pagination });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          this.setState({ isLoading: false });
+        }, 500);
+      });
+  };
+
   render() {
+    console.log(this.state);
+    // const { totalPage } = this.state.pagination;
+    const { isLoading } = this.state;
     return (
       <>
         <Navbar />
@@ -36,55 +80,19 @@ class HomePage extends Component {
               <p>View all</p>
             </div>
             <div className={styles.cards}>
-              <div className={styles.imgCard}>
-                <img src={card1} alt={card1} />
-                <p className={styles.movieName}>Spider-Man:Homecoming</p>
-                <p className={styles.genre}>Acion, Adventure, Sci-FI</p>
-                <p className={styles.buttonDetail}>Details</p>
-                <p className={styles.buttonBookNow}>Book Now</p>
-              </div>
-              <div className={styles.imgCard}>
-                <img src={card1} alt={card1} />
-                <p className={styles.movieName}>Spider-Man:Homecoming</p>
-                <p className={styles.genre}>Acion, Adventure, Sci-FI</p>
-                <p className={styles.buttonDetail}>Details</p>
-                <p className={styles.buttonBookNow}>Book Now</p>
-              </div>
-              <div className={styles.imgCard}>
-                <img src={card1} alt={card1} />
-                <p className={styles.movieName}>Spider-Man:Homecoming</p>
-                <p className={styles.genre}>Acion, Adventure, Sci-FI</p>
-                <p className={styles.buttonDetail}>Details</p>
-                <p className={styles.buttonBookNow}>Book Now</p>
-              </div>
-              <div className={styles.imgCard}>
-                <img src={card1} alt={card1} />
-                <p className={styles.movieName}>Spider-Man:Homecoming</p>
-                <p className={styles.genre}>Acion, Adventure, Sci-FI</p>
-                <p className={styles.buttonDetail}>Details</p>
-                <p className={styles.buttonBookNow}>Book Now</p>
-              </div>
-              <div className={styles.imgCard}>
-                <img src={card1} alt={card1} />
-                <p className={styles.movieName}>Spider-Man:Homecoming</p>
-                <p className={styles.genre}>Acion, Adventure, Sci-FI</p>
-                <p className={styles.buttonDetail}>Details</p>
-                <p className={styles.buttonBookNow}>Book Now</p>
-              </div>
-              <div className={styles.imgCard}>
-                <img src={card1} alt={card1} />
-                <p className={styles.movieName}>Spider-Man:Homecoming</p>
-                <p className={styles.genre}>Acion, Adventure, Sci-FI</p>
-                <p className={styles.buttonDetail}>Details</p>
-                <p className={styles.buttonBookNow}>Book Now</p>
-              </div>
-              <div className={styles.imgCard}>
-                <img src={card1} alt={card1} />
-                <p className={styles.movieName}>Spider-Man:Homecoming</p>
-                <p className={styles.genre}>Acion, Adventure, Sci-FI</p>
-                <p className={styles.buttonDetail}>Details</p>
-                <p className={styles.buttonBookNow}>Book Now</p>
-              </div>
+              {isLoading ? (
+                <Col md={12}>
+                  <Spinner animation="border" variant="warning" />
+                </Col>
+              ) : (
+                this.state.data.map((item, index) => {
+                  return (
+                    <Col md={3} key={index}>
+                      <Cards data={item} />
+                    </Col>
+                  );
+                })
+              )}
             </div>
           </div>
 
@@ -109,36 +117,19 @@ class HomePage extends Component {
             </div>
 
             <div className={styles.cards}>
-              <div className={styles.imgCard}>
-                <img src={card1} alt={card1} />
-                <p className={styles.movieName}>Spider-Man:Homecoming</p>
-                <p className={styles.genre}>Acion, Adventure, Sci-FI</p>
-                <p className={styles.buttonDetail}>Details</p>
-              </div>
-              <div className={styles.imgCard}>
-                <img src={card1} alt={card1} />
-                <p className={styles.movieName}>Spider-Man:Homecoming</p>
-                <p className={styles.genre}>Acion, Adventure, Sci-FI</p>
-                <p className={styles.buttonDetail}>Details</p>
-              </div>
-              <div className={styles.imgCard}>
-                <img src={card1} alt={card1} />
-                <p className={styles.movieName}>Spider-Man:Homecoming</p>
-                <p className={styles.genre}>Acion, Adventure, Sci-FI</p>
-                <p className={styles.buttonDetail}>Details</p>
-              </div>
-              <div className={styles.imgCard}>
-                <img src={card1} alt={card1} />
-                <p className={styles.movieName}>Spider-Man:Homecoming</p>
-                <p className={styles.genre}>Acion, Adventure, Sci-FI</p>
-                <p className={styles.buttonDetail}>Details</p>
-              </div>
-              <div className={styles.imgCard}>
-                <img src={card1} alt={card1} />
-                <p className={styles.movieName}>Spider-Man:Homecoming</p>
-                <p className={styles.genre}>Acion, Adventure, Sci-FI</p>
-                <p className={styles.buttonDetail}>Details</p>
-              </div>
+              {isLoading ? (
+                <Col md={12}>
+                  <Spinner animation="border" variant="warning" />
+                </Col>
+              ) : (
+                this.state.data.map((item, index) => {
+                  return (
+                    <Col md={3} key={index}>
+                      <Cards2 data={item} />
+                    </Col>
+                  );
+                })
+              )}
             </div>
           </div>
 

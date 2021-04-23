@@ -11,11 +11,21 @@
   border-bottom: rgb(235, 229, 229) solid 1px;
 }
 
-.location a {
-  color: #a09898;
+.navbar a {
+  color: #414141;
+  text-decoration: none;
 }
 
-.navLeft {
+.navbar a:hover {
+  color: black;
+}
+
+.linkBrand {
+  color: rebeccapurple;
+  margin-right: 30px;
+}
+
+.link {
   margin-left: 40px;
 }
 

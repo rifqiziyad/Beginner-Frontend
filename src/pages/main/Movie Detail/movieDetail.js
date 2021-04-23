@@ -13,9 +13,45 @@ import styles from "./movieDetail.module.css";
 import imgDetail from "../../../assets/img/card-movie1.png";
 import logoLocation from "../../../assets/img/logo location.png";
 import logoEbu from "../../../assets/img/ebu.id.png";
+import axiosApiIntances from "../../../utils/axios";
+import moment from "moment";
 
 class movieDetail extends Component {
+  constructor() {
+    super();
+    this.state = {
+      form: {},
+    };
+  }
+
+  componentDidMount() {
+    this.getDataById();
+  }
+
+  getDataById = () => {
+    const movieId = this.props.match.params.id;
+    axiosApiIntances
+      .get(`/movie/${movieId}`)
+      .then((res) => {
+        console.log(res.data.data[0]);
+        this.setState({ form: res.data.data[0] });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
+    const {
+      movie_name,
+      movie_category,
+      movie_release_date,
+      duration_hour,
+      duration_minute,
+      directed,
+      casts,
+      synopsis,
+    } = this.state.form;
     return (
       <>
         <NavBar />
@@ -27,41 +63,35 @@ class movieDetail extends Component {
               </div>
             </Col>
             <Col className={styles.col2} md={7}>
-              <h2>Spider-Man: Homecoming</h2>
-              <h1>Adventure, Action, Sci-Fi</h1>
+              <h2>{movie_name}</h2>
+              <h1>{movie_category}</h1>
               <div className={styles.content}>
                 <div className={styles.info1}>
                   <div className={styles.releaseDate}>
                     <p>Release date</p>
-                    <h3>June 28, 2017</h3>
+                    <h3>{moment(movie_release_date).format("ll")}</h3>
                   </div>
                   <div className={styles.directed}>
                     <p>Directed by</p>
-                    <h3>Jon Watss</h3>
+                    <h3>{directed}</h3>
                   </div>
                 </div>
                 <div className={styles.info2}>
                   <div className={styles.duration}>
                     <p>Duration</p>
-                    <h3>2 hours 13 minutes </h3>
+                    <h3>
+                      {duration_hour} hours {duration_minute} minutes{" "}
+                    </h3>
                   </div>
                   <div className={styles.casts}>
                     <p>cats</p>
-                    <h3>Tom Holland, Michael Keaton, Robert Downey Jr., ...</h3>
+                    <h3>{casts}</h3>
                   </div>
                 </div>
               </div>
               <hr />
               <h5>Synopsis</h5>
-              <p className={styles.synopsis}>
-                Thrilled by his experience with the Avengers, Peter returns
-                home, where he lives with his Aunt May, under the watchful eye
-                of his new mentor Tony Stark, Peter tries to fall back into his
-                normal daily routine - distracted by thoughts of proving himself
-                to be more than just your friendly neighborhood Spider-Man - but
-                when the Vulture emerges as a new villain, everything that Peter
-                holds most important will be threatened.
-              </p>
+              <p className={styles.synopsis}>{synopsis}</p>
             </Col>
           </Row>
 

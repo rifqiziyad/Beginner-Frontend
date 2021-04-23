@@ -1,5 +1,7 @@
-1. home page
-2. movie detail
-3. order page
-4. payment
-5. admin
+Proses Integrasi
+
+1. buat fungsinya, contoh getData menggunakan axios
+2. masukkan fungsinya ke dalam componentDidMount(). cek data dulu menggunakan console.log
+3. tampung data di this.state, contoh data: [] atau pagination: {}
+4. cek dlu di render() console.log(this.state.data) (isinya berupa array, klo ngga array tidak mau lopping)
+5. mapping data, sebelumnya coba dlu mapping tag element. contoh <h1>{item.movie_name}<h1>

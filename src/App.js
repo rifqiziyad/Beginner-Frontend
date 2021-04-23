@@ -24,7 +24,7 @@ class App extends Component {
           />
           {/* ============================================ */}
           <Route path="/" exact component={HomePage} />
-          <Route path="/movie-detail" exact component={movieDetail} />
+          <Route path="/movie-detail/:id" exact component={movieDetail} />
           <Route path="/order-page" exact component={orderPage} />
           <Route path="/payment" exact component={Payment} />
           <Route path="/payment-method" exact component={paymentMethod} />

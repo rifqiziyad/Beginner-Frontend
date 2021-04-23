@@ -44,7 +44,7 @@ class Home extends Component {
       .finally(() => {
         setTimeout(() => {
           this.setState({ isLoading: false });
-        }, 1000);
+        }, 500);
       });
   };
 
@@ -76,7 +76,7 @@ class Home extends Component {
     // proses reqeust post movie
     // axiosApiIntances.post(`movie`, form).then(
     //   this.getData()
-    //   this.reserData()
+    //   this.resetData()
     // ).catch()
   };
 
@@ -101,11 +101,23 @@ class Home extends Component {
     console.log(this.state.form);
     this.setState({ isUpdate: false });
     this.resetData(event);
+    // const {form} = this.state.form
+    // proses reqeust patch movie
+    // axiosApiIntances.patch(`movie/${id}`).then(
+    //   this.getData()
+    //   this.resetData()
+    // ).catch()
   };
 
   deleteData = (id) => {
     console.log("Delete Data");
     console.log(id);
+    // const {form} = this.state.form
+    // proses reqeust delete movie
+    // axiosApiIntances.delete(`movie/${id}`).then(
+    //   this.getData()
+    //   this.resetData()
+    // ).catch()
   };
 
   handlePageClick = (event) => {
@@ -116,7 +128,7 @@ class Home extends Component {
   };
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const { totalPage } = this.state.pagination;
     const { isLoading, isUpdate } = this.state;
     return (
