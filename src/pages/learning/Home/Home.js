@@ -112,11 +112,9 @@ class Home extends Component {
   deleteData = (id) => {
     console.log("Delete Data");
     console.log(id);
-    // const {form} = this.state.form
     // proses reqeust delete movie
     // axiosApiIntances.delete(`movie/${id}`).then(
     //   this.getData()
-    //   this.resetData()
     // ).catch()
   };
 

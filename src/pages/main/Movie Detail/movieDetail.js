@@ -10,11 +10,11 @@ import {
   Button,
 } from "react-bootstrap";
 import styles from "./movieDetail.module.css";
-import imgDetail from "../../../assets/img/card-movie1.png";
 import logoLocation from "../../../assets/img/logo location.png";
 import logoEbu from "../../../assets/img/ebu.id.png";
 import axiosApiIntances from "../../../utils/axios";
 import moment from "moment";
+import imgDefault from "../../../assets/img/default.jpg";
 
 class movieDetail extends Component {
   constructor() {
@@ -59,7 +59,7 @@ class movieDetail extends Component {
           <Row className={styles.row}>
             <Col md={3}>
               <div className={styles.col1}>
-                <img src={imgDetail} alt="imgDetail" />
+                <img src={imgDefault} alt="imgDetail" />
               </div>
             </Col>
             <Col className={styles.col2} md={7}>

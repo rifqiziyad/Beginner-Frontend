@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Navbar, NavDropdown, Nav, Form } from "react-bootstrap";
+import { Row, Navbar, Col, Nav, Form } from "react-bootstrap";
 import styles from "./Navbar.module.css";
 import imgSearch from "../../assets/img/Search.png";
 import { Link } from "react-router-dom";
@@ -25,21 +25,25 @@ class NavBar extends Component {
                 Profile
               </Link>
             </Nav>
-            <Form inline className={styles.formRight}>
-              <NavDropdown
-                className={styles.location}
-                title="Location"
-                id="basic-nav-dropdown"
-              >
-                <NavDropdown.Item to="//3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item to="//3.2">Another action</NavDropdown.Item>
-                <NavDropdown.Item to="//3.3">Something</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item to="//3.4">Separated link</NavDropdown.Item>
-              </NavDropdown>
-              <img className={styles.navRight} src={imgSearch} alt="Search" />
-              <Button className={styles.button}>Sign In</Button>
-            </Form>
+
+            <Row className={styles.inputMovieName}>
+              <Col md={2} className={styles.imgSearchMovie}>
+                <img
+                  className={styles.imgSearch}
+                  src={imgSearch}
+                  alt="Search"
+                />
+              </Col>
+
+              <Col md={10} className={styles.inputSearch}>
+                <Form.Control
+                  type="text"
+                  name="Search"
+                  placeholder="Search Movie Name..."
+                  className={styles.inputName}
+                />
+              </Col>
+            </Row>
           </Navbar.Collapse>
         </Navbar>
       </>

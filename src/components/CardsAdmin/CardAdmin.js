@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Col } from "react-bootstrap";
+import { Col, Button } from "react-bootstrap";
 import styles from "./CardAdmin.module.css";
 
 class CardAdmin extends Component {
   render() {
-    const { movie_name, movie_category } = this.props.data;
+    const { movie_id, movie_name, movie_category } = this.props.data;
+    const { handleUpdate, handleDelete, data } = this.props;
     return (
       <>
         {" "}
@@ -15,8 +16,21 @@ class CardAdmin extends Component {
           />
           <p className={styles.movieName}>{movie_name}</p>
           <p className={styles.genre}>{movie_category} </p>
-          <p className={styles.buttonUpdate}>Update</p>
-          <p className={styles.buttonDelete}>Delete</p>
+          <Col>
+            <Button
+              onClick={() => handleUpdate(data)}
+              className={styles.buttonUpdate}
+            >
+              Update
+            </Button>
+
+            <Button
+              onClick={() => handleDelete(movie_id)}
+              className={styles.buttonDelete}
+            >
+              Delete
+            </Button>
+          </Col>
         </Col>
       </>
     );

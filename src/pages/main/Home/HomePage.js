@@ -9,6 +9,7 @@ import img3 from "../../../assets/img/image-3.png";
 import Cards from "../../../components/Cards/Card";
 import Cards2 from "../../../components/Cards2/Card2";
 import axiosApiIntances from "../../../utils/axios";
+import ReactPaginate from "react-paginate";
 
 class HomePage extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class HomePage extends Component {
       data: [],
       pagination: {},
       page: 1,
-      limit: 5,
+      limit: 4,
       isLoading: false,
       isUpdate: false,
       id: "",
@@ -52,9 +53,16 @@ class HomePage extends Component {
       });
   };
 
+  handlePageClick = (event) => {
+    const selectedPage = event.selected + 1;
+    this.setState({ page: selectedPage }, () => {
+      this.getData();
+    });
+  };
+
   render() {
     console.log(this.state);
-    // const { totalPage } = this.state.pagination;
+    const { totalPage } = this.state.pagination;
     const { isLoading } = this.state;
     return (
       <>
@@ -94,6 +102,21 @@ class HomePage extends Component {
                 })
               )}
             </div>
+            <Row>
+              <ReactPaginate
+                previousLabel={`prev`}
+                nextLabel={"next"}
+                breakLabel={"..."}
+                breakClassName={"break-me"}
+                pageCount={totalPage} // Total page
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={this.handlePageClick}
+                containerClassName={styles.pagination}
+                subContainerClassName={`${styles.pages} ${styles.pagination}`}
+                activeClassName={styles.active}
+              />
+            </Row>
           </div>
 
           <div className={styles.content2}>

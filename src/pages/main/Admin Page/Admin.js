@@ -29,6 +29,7 @@ class Admin extends Component {
         movieDirector: "",
       },
       data: [],
+      pagination: {},
       isUpdate: false,
       isLoading: false,
       page: 1,
@@ -48,6 +49,7 @@ class Admin extends Component {
     axiosApiIntances
       .get(`movie?page=${page}&limit=${limit}&search=&sort=movie_id ASC`)
       .then((res) => {
+        console.log(res);
         this.setState({ data: res.data.data, pagination: res.data.pagination });
       })
       .catch((err) => {
@@ -60,19 +62,67 @@ class Admin extends Component {
       });
   };
 
+  setUpdate = (data) => {
+    console.log("Set Update");
+    console.log(data);
+    this.setState({
+      isUpdate: true,
+      id: data.movie_id,
+      form: {
+        movieName: data.movie_name,
+        movieCategory: data.movie_category,
+        movieReleaseDate: data.movie_release_date.slice(0, 10),
+        movieCasts: data.casts,
+        durationHour: data.duration_hour,
+        durationMinute: data.duration_minute,
+        movieSynopsis: data.synopsis,
+        movieDirector: data.directed,
+        movie_updated_at: new Date(Date.now()),
+      },
+    });
+  };
+
+  updateData = (event) => {
+    event.preventDefault();
+    console.log("Update Data Berhasil");
+    const { form } = this.state;
+    // proses reqeust patch movie
+    axiosApiIntances
+      .patch(`movie/${this.state.id}`, form)
+      .then(this.getData(), this.resetData())
+      .catch();
+  };
+
+  deleteData = (id) => {
+    console.log("Delete Data");
+    axiosApiIntances
+      .delete(`movie/${id}`)
+      .then(
+        console.log(`Data dengan id ${id} berhasil dihapus`),
+        this.getData()
+      )
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   submitData = (event) => {
     event.preventDefault();
     console.log("Save Data !");
-    console.log(this.state.form);
-    const { form } = this.state.form;
+    const { form } = this.state;
+    console.log(form);
+
     // proses reqeust post movie
     axiosApiIntances
       .post("movie", form)
-      .then(this.getData(), this.resetData())
+      .then((res) => {
+        this.getData();
+        this.resetData();
+      })
       .catch((err) => console.log(err));
   };
 
-  resetData = (event) => {
+  resetData = () => {
     this.setState({
       form: {
         movieName: "",
@@ -98,6 +148,16 @@ class Admin extends Component {
 
   render() {
     const { isUpdate, isLoading } = this.state;
+    const {
+      movieName,
+      movieCategory,
+      movieReleaseDate,
+      movieCasts,
+      durationHour,
+      durationMinute,
+      movieSynopsis,
+      movieDirector,
+    } = this.state.form;
     return (
       <>
         <NavbarAdmin />
@@ -128,7 +188,7 @@ class Admin extends Component {
                         type="text"
                         placeholder="Input Movie Name"
                         name="movieName"
-                        value={this.state.form.movieName}
+                        value={movieName}
                         className={styles.inputName}
                         onChange={(event) => this.changeText(event)}
                       />
@@ -139,7 +199,7 @@ class Admin extends Component {
                         type="text"
                         placeholder="Input Movie Director"
                         name="movieDirector"
-                        value={this.state.form.movieDirector}
+                        value={movieDirector}
                         className={styles.inputName}
                         onChange={(event) => this.changeText(event)}
                       />
@@ -151,7 +211,7 @@ class Admin extends Component {
                       <Form.Control
                         type="date"
                         name="movieReleaseDate"
-                        value={this.state.form.movieReleaseDate}
+                        value={movieReleaseDate}
                         className={styles.inputName}
                         onChange={(event) => this.changeText(event)}
                       />
@@ -166,7 +226,7 @@ class Admin extends Component {
                         type="text"
                         placeholder="Input Movie Category"
                         name="movieCategory"
-                        value={this.state.form.movieCategory}
+                        value={movieCategory}
                         className={styles.inputName}
                         onChange={(event) => this.changeText(event)}
                       />
@@ -177,7 +237,7 @@ class Admin extends Component {
                         type="text"
                         placeholder="Input Casts"
                         name="movieCasts"
-                        value={this.state.form.movieCasts}
+                        value={movieCasts}
                         className={styles.inputName}
                         onChange={(event) => this.changeText(event)}
                       />
@@ -190,9 +250,9 @@ class Admin extends Component {
                           </Form.Label>
                           <Form.Control
                             type="number"
-                            name="movieHour"
+                            name="durationHour"
                             placeholder="Input Hour"
-                            value={this.state.form.durationHour}
+                            value={durationHour}
                             className={styles.inputName}
                             onChange={(event) => this.changeText(event)}
                           />
@@ -203,9 +263,9 @@ class Admin extends Component {
                           </Form.Label>
                           <Form.Control
                             type="number"
-                            name="movieMinute"
+                            name="durationMinute"
                             placeholder="Input Minute"
-                            value={this.state.form.durationMinute}
+                            value={durationMinute}
                             className={styles.inputName}
                             onChange={(event) => this.changeText(event)}
                           />
@@ -218,7 +278,7 @@ class Admin extends Component {
                   <Form.Label className={styles.label}>Synopsis</Form.Label>
                   <Form.Control
                     as="textarea"
-                    value={this.state.form.movieSynopsis}
+                    value={movieSynopsis}
                     name="movieSynopsis"
                     onChange={(event) => this.changeText(event)}
                     placeholder="Input Synopsis"
@@ -290,7 +350,11 @@ class Admin extends Component {
               this.state.data.map((item, index) => {
                 return (
                   <Col md={3} key={index}>
-                    <CardAdmin data={item} />
+                    <CardAdmin
+                      data={item}
+                      handleUpdate={this.setUpdate.bind(this)}
+                      handleDelete={this.deleteData.bind(this)}
+                    />
                   </Col>
                 );
               })

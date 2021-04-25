@@ -29,6 +29,48 @@
   border: none;
 }
 
+.linkBrand {
+  color: rgba(0, 0, 0, 0.699);
+  text-decoration: none !important;
+}
+
+.linkBrand:hover {
+  color: black;
+}
+
+.inputName {
+  /* border: black solid 1px; */
+  border: none;
+}
+
+.inputMovieName {
+  padding: 0;
+  border: rgb(207, 205, 205) solid 1px;
+  position: relative;
+  border-radius: 4px;
+}
+
+.inputSearch {
+  padding: 0;
+}
+
+.imgSearch {
+  margin: 0 10px;
+  width: 50%;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: absolute;
+  transform: rotate(90deg);
+}
+
+.imgSearchMovie {
+  border-right: rgb(207, 205, 205) solid 1px;
+  position: relative;
+}
+
 @media only screen and (max-width: 1000px) {
   .navbar {
     padding: 30px;
@@ -37,14 +79,13 @@
   .navRight {
     margin: 0;
   }
-  .formRight {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+
+  .imgSearchMovie {
+    display: none;
   }
 
-  .navRight {
-    margin: 10px 0;
+  .inputMovieName {
+    width: 300px;
   }
 }
 
@@ -58,19 +99,12 @@
     margin: 0;
   }
 
-  .formRight {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  .imgSearchMovie {
+    display: none;
   }
 
-  .dropdown-toggle {
-    border: solid black;
-    color: white;
-  }
-
-  .navRight {
-    margin: 15px 0;
+  .inputMovieName {
+    width: 300px;
   }
   .location a {
     padding: 0;
