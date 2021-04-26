@@ -15,6 +15,7 @@ import logoEbu from "../../../assets/img/ebu.id.png";
 import axiosApiIntances from "../../../utils/axios";
 import moment from "moment";
 import imgDefault from "../../../assets/img/default.jpg";
+import { Link } from "react-router-dom";
 
 class movieDetail extends Component {
   constructor() {
@@ -135,20 +136,25 @@ class movieDetail extends Component {
               <hr />
               <div className={styles.time}>
                 <h3>08:30am</h3>
-                <h3>08:30am</h3>
-                <h3>08:30am</h3>
-                <h3>08:30am</h3>
-                <h3>08:30am</h3>
-                <h3>08:30am</h3>
-                <h3>08:30am</h3>
+                <h3>09:30am</h3>
+                <h3>11:30am</h3>
+                <h3>02:30pm</h3>
+                <h3>03:30pm</h3>
+                <h3>05:30pm</h3>
+                <h3>07:30pm</h3>
               </div>
               <div className={styles.price}>
                 <h1>Price</h1>
                 <h5>$10.00/seat</h5>
               </div>
               <div className={styles.buttonBookNow}>
-                <Button variant="light">Book Now</Button>
-                <Button variant="light">Add to cart</Button>
+                <Link
+                  to="/order-page"
+                  className={styles.bookNow}
+                  variant="light"
+                >
+                  Book Now
+                </Link>
               </div>
             </div>
             <div className={styles.cinemaCard}>
@@ -162,24 +168,25 @@ class movieDetail extends Component {
               <hr />
               <div className={styles.time}>
                 <h3>08:30am</h3>
-                <h3>08:30am</h3>
-                <h3>08:30am</h3>
-                <h3>08:30am</h3>
-                <h3>08:30am</h3>
-                <h3>08:30am</h3>
-                <h3>08:30am</h3>
+                <h3>09:30am</h3>
+                <h3>11:30am</h3>
+                <h3>02:30pm</h3>
+                <h3>03:30pm</h3>
+                <h3>05:30pm</h3>
+                <h3>07:30pm</h3>
               </div>
               <div className={styles.price}>
                 <h1>Price</h1>
                 <h5>$10.00/seat</h5>
               </div>
               <div className={styles.buttonBookNow}>
-                <Button className={styles.btn} variant="light">
+                <Link
+                  to="/order-page"
+                  className={styles.bookNow}
+                  variant="light"
+                >
                   Book Now
-                </Button>
-                <Button className={styles.btn} variant="light">
-                  Add to cart
-                </Button>
+                </Link>
               </div>
             </div>
             <div className={styles.cinemaCard}>
@@ -193,24 +200,25 @@ class movieDetail extends Component {
               <hr />
               <div className={styles.time}>
                 <h3>08:30am</h3>
-                <h3>08:30am</h3>
-                <h3>08:30am</h3>
-                <h3>08:30am</h3>
-                <h3>08:30am</h3>
-                <h3>08:30am</h3>
-                <h3>08:30am</h3>
+                <h3>09:30am</h3>
+                <h3>11:30am</h3>
+                <h3>02:30pm</h3>
+                <h3>03:30pm</h3>
+                <h3>05:30pm</h3>
+                <h3>07:30pm</h3>
               </div>
               <div className={styles.price}>
                 <h1>Price</h1>
                 <h5>$10.00/seat</h5>
               </div>
               <div className={styles.buttonBookNow}>
-                <Button className={styles.btn} variant="light">
+                <Link
+                  to="/order-page"
+                  className={styles.bookNow}
+                  variant="light"
+                >
                   Book Now
-                </Button>
-                <Button className={styles.btn} variant="light">
-                  Add to cart
-                </Button>
+                </Link>
               </div>
             </div>
           </div>

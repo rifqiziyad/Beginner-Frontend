@@ -1,10 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 
-.row1 {
-  margin: 70px;
+.container {
+  padding: 70px;
 }
-
 .col1 {
   font-family: "Mulish", sans-serif;
   font-size: 24px;
@@ -69,6 +68,7 @@
   margin-top: 50px;
   font-family: "Mulish", sans-serif;
   margin-bottom: 50px;
+  overflow-x: scroll;
 }
 
 .content2 {
@@ -100,14 +100,14 @@
   overflow-x: scroll;
 }
 
-.month p {
+.month .buttonMonth {
   border: solid 1px #5f2eea;
   padding: 10px 35px;
   border-radius: 4px;
   margin-right: 10px;
 }
 
-.month p:hover {
+.month .buttonMonth:hover {
   color: white;
   background-color: #5f2eea;
   box-shadow: 0px 8px 30px rgba(95, 46, 234, 0.3);

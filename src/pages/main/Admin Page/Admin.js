@@ -13,6 +13,7 @@ import styles from "./Admin.module.css";
 import Footer from "../../../components/Footer/Footer";
 import CardAdmin from "../../../components/CardsAdmin/CardAdmin";
 import axiosApiIntances from "../../../utils/axios";
+import ReactPaginate from "react-paginate";
 
 class Admin extends Component {
   constructor(props) {
@@ -30,10 +31,12 @@ class Admin extends Component {
       },
       data: [],
       pagination: {},
+      page: 1,
+      limit: 100,
       isUpdate: false,
       isLoading: false,
       page: 1,
-      limit: 100,
+      limit: 4,
       id: "",
     };
   }
@@ -146,8 +149,16 @@ class Admin extends Component {
     });
   };
 
+  handlePageClick = (event) => {
+    const selectedPage = event.selected + 1;
+    this.setState({ page: selectedPage }, () => {
+      this.getData();
+    });
+  };
+
   render() {
     const { isUpdate, isLoading } = this.state;
+    const { totalPage } = this.state.pagination;
     const {
       movieName,
       movieCategory,
@@ -360,6 +371,21 @@ class Admin extends Component {
               })
             )}
           </Col>
+          <Row>
+            <ReactPaginate
+              previousLabel={`prev`}
+              nextLabel={"next"}
+              breakLabel={"..."}
+              breakClassName={"break-me"}
+              pageCount={totalPage} // Total page
+              marginPagesDisplayed={2}
+              pageRangeDisplayed={5}
+              onPageChange={this.handlePageClick}
+              containerClassName={styles.pagination}
+              subContainerClassName={`${styles.pages} ${styles.pagination}`}
+              activeClassName={styles.active}
+            />
+          </Row>
         </Container>
         <Footer />
       </>

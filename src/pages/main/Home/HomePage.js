@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "../../../components/NavBar/NavBar";
 import Footer from "../../../components/Footer/Footer";
-import { Container, Row, Col, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Spinner, Button } from "react-bootstrap";
 import styles from "./home.module.css";
 import img1 from "../../../assets/img/image-1.png";
 import img2 from "../../../assets/img/image-2.png";
@@ -18,20 +18,72 @@ class HomePage extends Component {
       form: {
         movieName: "",
         movieCategory: "",
-        movieReleaseDate: "",
+        movieReleaseDate: "22/4/2021",
       },
       data: [],
+      movieMonth: [],
       pagination: {},
       page: 1,
-      limit: 4,
+      limit: 100,
       isLoading: false,
       isUpdate: false,
       id: "",
+      month: [
+        {
+          nameMonth: "January",
+          numMonth: "01",
+        },
+        {
+          nameMonth: "February",
+          numMonth: "02",
+        },
+        {
+          nameMonth: "March",
+          numMonth: "03",
+        },
+        {
+          nameMonth: "April",
+          numMonth: "04",
+        },
+        {
+          nameMonth: "May",
+          numMonth: "05",
+        },
+        {
+          nameMonth: "Juny",
+          numMonth: "06",
+        },
+        {
+          nameMonth: "July",
+          numMonth: "07",
+        },
+        {
+          nameMonth: "August",
+          numMonth: "08",
+        },
+        {
+          nameMonth: "Sepetember",
+          numMonth: "09",
+        },
+        {
+          nameMonth: "October",
+          numMonth: "10",
+        },
+        {
+          nameMonth: "November",
+          numMonth: "11",
+        },
+        {
+          nameMonth: "Desember",
+          numMonth: "12",
+        },
+      ],
     };
   }
 
   componentDidMount() {
     this.getData();
+    console.log(this.state.form);
   }
 
   getData = () => {
@@ -60,14 +112,27 @@ class HomePage extends Component {
     });
   };
 
+  handleMonth = (num) => {
+    console.log(num);
+    const { data } = this.state;
+    const newData = data.filter(
+      (e) => e.movie_release_date.split("-")[1] === num
+    );
+    console.log(newData);
+    this.setState({ movieMonth: newData });
+  };
+
+  handleViewAll = () => {
+    this.getData();
+  };
+
   render() {
-    console.log(this.state);
     const { totalPage } = this.state.pagination;
     const { isLoading } = this.state;
     return (
       <>
         <Navbar />
-        <Container>
+        <Container fluid className={styles.container}>
           <Row className={styles.row1}>
             <Col sm={6} className={styles.col1}>
               <p> Nearest Cinema, Newest Movie,</p>
@@ -102,7 +167,7 @@ class HomePage extends Component {
                 })
               )}
             </div>
-            <Row>
+            {/* <Row>
               <ReactPaginate
                 previousLabel={`prev`}
                 nextLabel={"next"}
@@ -116,27 +181,28 @@ class HomePage extends Component {
                 subContainerClassName={`${styles.pages} ${styles.pagination}`}
                 activeClassName={styles.active}
               />
-            </Row>
+            </Row> */}
           </div>
 
           <div className={styles.content2}>
             <div className={styles.upcoming}>
               <p className={styles.upcomingMovies}>Upcoming Movies</p>
-              <p>View all</p>
+              <p onClick={() => this.handleViewAll()}>View all</p>
             </div>
 
             <div className={styles.month}>
-              <p>January</p>
-              <p>February</p>
-              <p>March</p>
-              <p>April</p>
-              <p>May</p>
-              <p>Juny</p>
-              <p>July</p>
-              <p>August</p>
-              <p>September</p>
-              <p>October</p>
-              <p>Desember</p>
+              {this.state.month.map((item, index) => {
+                return (
+                  <Button
+                    key={index}
+                    variant="light"
+                    className={styles.buttonMonth}
+                    onClick={() => this.handleMonth(item.numMonth)}
+                  >
+                    {`${item.nameMonth}`}
+                  </Button>
+                );
+              })}
             </div>
 
             <div className={styles.cards}>
@@ -145,7 +211,7 @@ class HomePage extends Component {
                   <Spinner animation="border" variant="warning" />
                 </Col>
               ) : (
-                this.state.data.map((item, index) => {
+                this.state.movieMonth.map((item, index) => {
                   return (
                     <Col md={3} key={index}>
                       <Cards2 data={item} />
@@ -154,6 +220,21 @@ class HomePage extends Component {
                 })
               )}
             </div>
+            {/* <Row>
+              <ReactPaginate
+                previousLabel={`prev`}
+                nextLabel={"next"}
+                breakLabel={"..."}
+                breakClassName={"break-me"}
+                pageCount={totalPage} // Total page
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={this.handlePageClick}
+                containerClassName={styles.pagination}
+                subContainerClassName={`${styles.pages} ${styles.pagination}`}
+                activeClassName={styles.active}
+              />
+            </Row> */}
           </div>
 
           <div className={styles.content3}>

@@ -56,7 +56,7 @@ class Payment extends Component {
                   <p>Phone Number</p>
                   <div className={styles.phoneNumber}>
                     <h1 className={styles.number}>+62</h1>
-                    <h1>89630213048</h1>
+                    <h1>8963021****</h1>
                   </div>
                 </div>
                 <div className={styles.warning}>

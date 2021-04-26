@@ -5,6 +5,7 @@ import styles from "./orderPage.module.css";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import logoCinemaOne from "../../../assets/img/cineone21.png";
 import Seat from "../../../components/Seat/seat";
+import { Link } from "react-router-dom";
 
 class Payment extends Component {
   constructor() {
@@ -108,18 +109,19 @@ class Payment extends Component {
                 </Card>
               </div>
               <div className={styles.buttonCheckout}>
-                <Button
+                <Link
                   className={styles.buttonCheckoutNow}
                   variant="outline-primary"
                 >
                   Change your movie
-                </Button>
-                <Button
+                </Link>
+                <Link
+                  to="/payment"
                   className={styles.buttonCheckoutNow}
                   variant="outline-primary"
                 >
                   Checkout now
-                </Button>
+                </Link>
               </div>
             </Col>
             <Col className={styles.col2} xs={4}>

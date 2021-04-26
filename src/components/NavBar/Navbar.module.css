@@ -21,8 +21,12 @@
 }
 
 .linkBrand {
-  color: rebeccapurple;
+  color: #5f2eea !important;
   margin-right: 30px;
+}
+
+.linkBrand a {
+  color: blueviolet;
 }
 
 .link {
@@ -30,7 +34,6 @@
 }
 
 .inputName {
-  /* border: black solid 1px; */
   border: none;
 }
 
