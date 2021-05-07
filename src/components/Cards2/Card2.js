@@ -5,10 +5,12 @@ import { Col, Button } from "react-bootstrap";
 
 class Cards2 extends Component {
   handleMovieDetail = (id) => {
-    this.props.history.push(`/movie-detail/${id}`);
+    // this.props.history.push(`/movie-detail/${id}`);
+    console.log(this.props);
   };
   render() {
     const { movie_id, movie_name, movie_category } = this.props.data;
+    // console.log(this.props.data);
     return (
       <>
         <Col className={styles.imgCard}>

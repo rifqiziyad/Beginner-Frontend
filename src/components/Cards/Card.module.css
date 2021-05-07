@@ -67,3 +67,21 @@
   color: white;
   background-color: #3a08c4;
 }
+
+@media only screen and (max-width: 1000px) {
+}
+
+@media only screen and (max-width: 600px) {
+  .buttonBookNow,
+  .buttonDetail {
+    font-size: 15px;
+  }
+
+  .imgCard {
+    width: 150px;
+  }
+
+  .movieName {
+    font-size: 14px;
+  }
+}

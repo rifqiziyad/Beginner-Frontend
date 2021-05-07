@@ -1,14 +1,7 @@
 import React, { Component } from "react";
 import Footer from "../../../components/Footer/Footer";
 import NavBar from "../../../components/NavBar/NavBar";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  NavDropdown,
-  Button,
-} from "react-bootstrap";
+import { Container, Row, Col, Form, NavDropdown } from "react-bootstrap";
 import styles from "./movieDetail.module.css";
 import logoLocation from "../../../assets/img/logo location.png";
 import logoEbu from "../../../assets/img/ebu.id.png";

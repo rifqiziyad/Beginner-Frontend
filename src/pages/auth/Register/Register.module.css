@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+.rowMain {
+  display: flex;
+  justify-content: center;
+  height: 600px;
+}
+
+.bgMarvel {
+  width: 100%;
+}
+
+.col2 {
+  padding: 20px 80px;
+}
+
+.col1 {
+  padding: 0;
+}
+
+.text {
+  margin-bottom: 40px;
+  font-family: Mulish;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 33px;
+  color: #121212;
+}
+
+.label {
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
+  color: #4e4b66;
+  margin-bottom: 10px;
+}
+
+.input {
+  background: #fcfdfe;
+  border: 1px solid #dedede;
+  box-sizing: border-box;
+  border-radius: 4px;
+  padding: 25px;
+}
+
+.submit {
+  padding: 15px;
+  margin-top: 30px;
+  background: #5f2eea;
+  border-radius: 4px;
+  border: none;
+  color: white;
+  font-family: "Mulish", sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  width: 100%;
+}
+
+::placeholder {
+  font-family: "Mulish", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.75px;
+  color: #a0a3bd;
+}
+
+.forgot {
+  text-align: center;
+  margin-top: 20px;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #8692a6;
+}
+
+.or {
+  margin-top: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  line-height: 15px;
+  color: #aaaaaa;
+  text-align: center;
+}
+
+.account {
+  display: flex;
+  margin-top: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.google,
+.facebook {
+  display: flex;
+  margin: 0 20px;
+  border-radius: 8px;
+  padding: 10px 25px;
+  border: #ece8e8 solid 1px;
+}
+
+.google:hover,
+.facebook:hover,
+.inputEmail:hover,
+.inputPassword:hover,
+.submit:hover {
+  box-shadow: 0 0 10px rgba(163, 146, 146, 0.8);
+}
+
+.account p {
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #a0a3bd;
+}
+
+.google img,
+.facebook img {
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+}
+
+span {
+  color: #5f2eea;
+}

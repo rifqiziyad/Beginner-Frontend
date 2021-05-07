@@ -15,6 +15,10 @@
   align-items: center;
 }
 
+.row1 {
+  margin-bottom: 50px;
+}
+
 .textCol1 {
   font-family: Mulish;
   color: #5f2eea;
@@ -32,6 +36,7 @@
 
 .col2 {
   display: flex;
+  position: relative;
 }
 
 .img2 {
@@ -192,6 +197,102 @@
 .pagination > li:last-child > a,
 .pagination > li:last-child > span {
   border-radius: unset;
+}
+
+@media only screen and (max-width: 1000px) {
+  .container {
+    padding: 50px 40px;
+  }
+
+  .row1 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .col1 {
+    font-size: 20px;
+    align-items: flex-start;
+    padding-bottom: 50px;
+    line-height: 50px;
+  }
+
+  .col2 {
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 50px 30px;
+    margin: 0 !important;
+  }
+
+  .row1 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .col1 {
+    font-size: 18px;
+    align-items: flex-start;
+    padding-bottom: 50px;
+    line-height: 50px;
+  }
+
+  .col2 img {
+    margin-right: 10px;
+    width: 90px;
+    height: 300px;
+  }
+
+  .col2 .img3 {
+    margin-right: 0;
+  }
+
+  .textCol1 {
+    font-weight: bold;
+    font-size: 45px;
+  }
+
+  .col2 {
+    position: static;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+
+  .showing .content2 {
+    font-size: 14px;
+  }
+
+  .borderBottom {
+    display: none;
+  }
+
+  .nowShowing,
+  .upcomingMovies {
+    font-size: 18px;
+    padding-bottom: 10px;
+    border-bottom: solid #5f2eea 3px;
+  }
+
+  .content3 {
+    margin: 0;
+    line-height: 114%;
+  }
+
+  .content3 h1 {
+    font-size: 40px;
+  }
+
+  .content3 input {
+    width: 100%;
+    margin: 40px 0 10px;
+  }
+
+  .content3 button {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
 
 /* reset css */

@@ -7,6 +7,7 @@ import {
   Button,
   Dropdown,
   Spinner,
+  Alert,
 } from "react-bootstrap";
 import NavbarAdmin from "../../../components/NavBar Admin/NavbarAdmin";
 import styles from "./Admin.module.css";
@@ -14,6 +15,13 @@ import Footer from "../../../components/Footer/Footer";
 import CardAdmin from "../../../components/CardsAdmin/CardAdmin";
 import axiosApiIntances from "../../../utils/axios";
 import ReactPaginate from "react-paginate";
+import { connect } from "react-redux";
+import {
+  getAllMovie,
+  createMovie,
+  updateMovie,
+  deleteMovie,
+} from "../../../redux/actions/adminPage";
 
 class Admin extends Component {
   constructor(props) {
@@ -28,13 +36,12 @@ class Admin extends Component {
         durationMinute: "",
         movieSynopsis: "",
         movieDirector: "",
+        dataImage: null,
       },
-      data: [],
+      // data: [],
       pagination: {},
-      page: 1,
-      limit: 100,
       isUpdate: false,
-      isLoading: false,
+      // isLoading: false,
       page: 1,
       limit: 4,
       id: "",
@@ -48,21 +55,21 @@ class Admin extends Component {
   getData = () => {
     console.log("Get Data !");
     const { page, limit } = this.state;
-    this.setState({ isLoading: true });
-    axiosApiIntances
-      .get(`movie?page=${page}&limit=${limit}&search=&sort=movie_id ASC`)
-      .then((res) => {
-        console.log(res);
-        this.setState({ data: res.data.data, pagination: res.data.pagination });
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setTimeout(() => {
-          this.setState({ isLoading: false });
-        }, 500);
-      });
+    this.props.getAllMovie(page, limit);
+    // this.setState({ isLoading: true });
+    // axiosApiIntances
+    //   .get(`movie?page=${page}&limit=${limit}&search=&sort=movie_id ASC`)
+    //   .then((res) => {
+    //     this.setState({ data: res.data.data, pagination: res.data.pagination });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   })
+    //   .finally(() => {
+    //     setTimeout(() => {
+    //       this.setState({ isLoading: false });
+    //     }, 500);
+    //   });
   };
 
   setUpdate = (data) => {
@@ -88,43 +95,101 @@ class Admin extends Component {
   updateData = (event) => {
     event.preventDefault();
     console.log("Update Data Berhasil");
-    const { form } = this.state;
+    const {
+      movieName,
+      movieCategory,
+      movieReleaseDate,
+      movieCasts,
+      durationHour,
+      durationMinute,
+      movieSynopsis,
+      movieDirector,
+      dataImage,
+    } = this.state.form;
+    const formData = new FormData();
+    formData.append("movieName", movieName);
+    formData.append("movieCategory", movieCategory);
+    formData.append("movieReleaseDate", movieReleaseDate);
+    formData.append("movieCasts", movieCasts);
+    formData.append("durationHour", durationHour);
+    formData.append("durationMinute", durationMinute);
+    formData.append("movieSynopsis", movieSynopsis);
+    formData.append("movieDirector", movieDirector);
+    formData.append("dataImage", dataImage);
+    for (var pair of formData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
     // proses reqeust patch movie
-    axiosApiIntances
-      .patch(`movie/${this.state.id}`, form)
-      .then(this.getData(), this.resetData())
-      .catch();
+    window.confirm("Yakin Ingin Update")
+      ? this.props.updateMovie(formData, this.state.id).then(() => {
+          this.getData();
+          this.resetData();
+        })
+      : console.log("batal");
+
+    // =====================
+    // ======================
+    // axiosApiIntances
+    // .patch(`movie/${this.state.id}`, form)
+    //   .then(this.getData(), this.resetData())
+    //   .catch();
   };
 
   deleteData = (id) => {
     console.log("Delete Data");
-    axiosApiIntances
-      .delete(`movie/${id}`)
-      .then(
-        console.log(`Data dengan id ${id} berhasil dihapus`),
-        this.getData()
-      )
-      .catch((err) => {
-        console.log(err);
-      });
+    window.confirm("Yakin Ingin Delete")
+      ? this.props.deleteMovie(id).then(() => {
+          this.getData();
+          this.resetData();
+        })
+      : console.log("batal");
+    // axiosApiIntances
+    //   .delete(`movie/${id}`)
+    //   .then(
+    //     console.log(`Data dengan id ${id} berhasil dihapus`),
+    //     this.getData()
+    //   )
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   submitData = (event) => {
     event.preventDefault();
     console.log("Save Data !");
-    const { form } = this.state;
-    console.log(form);
+    const {
+      movieName,
+      movieCategory,
+      movieReleaseDate,
+      movieCasts,
+      durationHour,
+      durationMinute,
+      movieSynopsis,
+      movieDirector,
+      dataImage,
+    } = this.state.form;
+    const formData = new FormData();
+    formData.append("movieName", movieName);
+    formData.append("movieCategory", movieCategory);
+    formData.append("movieReleaseDate", movieReleaseDate);
+    formData.append("movieCasts", movieCasts);
+    formData.append("durationHour", durationHour);
+    formData.append("durationMinute", durationMinute);
+    formData.append("movieSynopsis", movieSynopsis);
+    formData.append("movieDirector", movieDirector);
+    formData.append("dataImage", dataImage);
+    // for (var pair of formData.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
 
     // proses reqeust post movie
-    axiosApiIntances
-      .post("movie", form)
-      .then((res) => {
-        this.getData();
-        this.resetData();
-      })
-      .catch((err) => console.log(err));
+    this.props.createMovie(formData).then((res) => {
+      // console.log(res);
+      alert(res.value.data.msg);
+      this.getData();
+      this.resetData();
+    });
   };
-
   resetData = () => {
     this.setState({
       form: {
@@ -136,6 +201,7 @@ class Admin extends Component {
         durationMinute: "",
         movieSynopsis: "",
         movieDirector: "",
+        dataImage: null,
       },
     });
   };
@@ -149,6 +215,15 @@ class Admin extends Component {
     });
   };
 
+  handleImage = (event) => {
+    this.setState({
+      form: {
+        ...this.state.form,
+        dataImage: event.target.files[0],
+      },
+    });
+  };
+
   handlePageClick = (event) => {
     const selectedPage = event.selected + 1;
     this.setState({ page: selectedPage }, () => {
@@ -157,8 +232,10 @@ class Admin extends Component {
   };
 
   render() {
-    const { isUpdate, isLoading } = this.state;
-    const { totalPage } = this.state.pagination;
+    // console.log(this.props);
+    const { isUpdate } = this.state;
+    const { totalPage } = this.props.admin.pagination;
+    const { isLoading } = this.props.admin;
     const {
       movieName,
       movieCategory,
@@ -181,15 +258,20 @@ class Admin extends Component {
             <Row className={styles.rowMain}>
               <h2>Form Movie</h2>
               <Row className={styles.row}>
-                <Col className={styles.partImg} md={2}>
+                <Col className={styles.partImg} md={3}>
                   <div className={styles.cardMovie}>
-                    <img
-                      src="https://www.a1hosting.net/wp-content/themes/arkahost/assets/images/default.jpg"
-                      alt=""
-                    />
+                    <Form.Group controlId="exampleForm.ControlInput1">
+                      <Form.Label className={styles.label}>
+                        Movie Image
+                      </Form.Label>
+                      <Form.Control
+                        type="file"
+                        onChange={(event) => this.handleImage(event)}
+                      />
+                    </Form.Group>
                   </div>
                 </Col>
-                <Col className={styles.info1} md={5}>
+                <Col className={styles.info1} md={4}>
                   <div className={styles.movieInfo}>
                     <Form.Group controlId="exampleForm.ControlInput1">
                       <Form.Label className={styles.label}>
@@ -358,7 +440,7 @@ class Admin extends Component {
                 <Spinner animation="border" variant="warning" />
               </Col>
             ) : (
-              this.state.data.map((item, index) => {
+              this.props.admin.dataMovie.map((item, index) => {
                 return (
                   <Col md={3} key={index}>
                     <CardAdmin
@@ -393,4 +475,10 @@ class Admin extends Component {
   }
 }
 
-export default Admin;
+const mapStateToProps = (state) => ({
+  admin: state.admin,
+});
+
+const mapDispatchProps = { getAllMovie, createMovie, updateMovie, deleteMovie };
+
+export default connect(mapStateToProps, mapDispatchProps)(Admin);

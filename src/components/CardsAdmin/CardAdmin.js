@@ -4,6 +4,7 @@ import styles from "./CardAdmin.module.css";
 
 class CardAdmin extends Component {
   render() {
+    console.log(this.props);
     const { movie_id, movie_name, movie_category } = this.props.data;
     const { handleUpdate, handleDelete, data } = this.props;
     return (

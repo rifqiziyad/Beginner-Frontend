@@ -9,7 +9,6 @@ import img3 from "../../../assets/img/image-3.png";
 import Cards from "../../../components/Cards/Card";
 import Cards2 from "../../../components/Cards2/Card2";
 import axiosApiIntances from "../../../utils/axios";
-import ReactPaginate from "react-paginate";
 
 class HomePage extends Component {
   constructor(props) {
@@ -127,7 +126,7 @@ class HomePage extends Component {
   };
 
   render() {
-    const { totalPage } = this.state.pagination;
+    // const { totalPage } = this.state.pagination;
     const { isLoading } = this.state;
     return (
       <>
