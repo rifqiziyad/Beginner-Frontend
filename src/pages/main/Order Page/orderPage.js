@@ -6,6 +6,8 @@ import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import logoCinemaOne from "../../../assets/img/cineone21.png";
 import Seat from "../../../components/Seat/seat";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { getMovieById } from "../../../redux/actions/movie";
 
 class Payment extends Component {
   constructor() {
@@ -19,11 +21,52 @@ class Payment extends Component {
     this.setState({
       selectedSeat: [...this.state.selectedSeat, seat],
     });
-    console.log(seat);
+    localStorage.setItem("seat", this.state.selectedSeat);
+    // if (this. === seat) {
+    //   console.log("tidak bisa");
+    // }
+    console.log(this.state.selectedSeat);
+  };
+
+  handleChangeMovie = () => {
+    this.props.history.push("/");
   };
 
   render() {
+    const localStorageSeat = localStorage.seat.split(",");
     const { reservedSeat, selectedSeat } = this.state;
+    const { movie_name } = this.props.movieByid.dataMovie[0];
+    var today = new Date();
+    var day = today.getDay();
+    var daylist = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday ",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    let date = today.getDate();
+    let month = today.getMonth();
+    let monthList = [
+      "Januari",
+      "Februari",
+      "Maret",
+      "April",
+      "Mei",
+      "Juni",
+      "Juli",
+      "Agustus",
+      "September",
+      "Oktober",
+      "November",
+      "Desember",
+    ];
+    let year = today.getFullYear();
+    let hour = today.getHours();
+    let minutes = today.getMinutes();
+    let prepand = hour ? "AM" : "PM";
     return (
       <>
         <NavBar />
@@ -32,8 +75,12 @@ class Payment extends Component {
             <Col className={styles.col1} xs={7}>
               <h2>Movie Selected</h2>
               <div className={styles.movieSelected}>
-                <h2>Spider-Man: Homecoming</h2>
-                <Button className={styles.buttonChange} variant="primary">
+                <h2>{movie_name}</h2>
+                <Button
+                  onClick={this.handleChangeMovie}
+                  className={styles.buttonChange}
+                  variant="primary"
+                >
                   Change Movie
                 </Button>
               </div>
@@ -112,6 +159,7 @@ class Payment extends Component {
                 <Link
                   className={styles.buttonCheckoutNow}
                   variant="outline-primary"
+                  to="/"
                 >
                   Change your movie
                 </Link>
@@ -132,11 +180,15 @@ class Payment extends Component {
                 <div className={styles.info}>
                   <div className={styles.movieName}>
                     <p>Movie Selected</p>
-                    <h3>Spider-Man: Homecoming</h3>
+                    <h3>{movie_name}</h3>
                   </div>
                   <div className={styles.date}>
-                    <p>Tuesday, 07 July 2020</p>
-                    <h3>02:00pm</h3>
+                    <p>
+                      {daylist[day]}, {date} {monthList[month]} {year}
+                    </p>
+                    <h3>
+                      {hour}: {minutes}{" "}
+                    </h3>
                   </div>
                   <div className={styles.oneTicketPrice}>
                     <p>One ticket price</p>
@@ -144,12 +196,12 @@ class Payment extends Component {
                   </div>
                   <div className={styles.seatCoosed}>
                     <p>Seat choosed</p>
-                    <h3>A1, A7, A14</h3>
+                    <h3>{localStorage.getItem("seat")}</h3>
                   </div>
                   <hr />
                   <div className={styles.totalPayment}>
                     <h5>Total Payment</h5>
-                    <h4>$30</h4>
+                    <h4>${10 * localStorageSeat.length}</h4>
                   </div>
                 </div>
               </div>
@@ -163,4 +215,10 @@ class Payment extends Component {
   }
 }
 
-export default Payment;
+const mapStateToProps = (state) => ({
+  movieByid: state.movie,
+});
+
+const mapDispatchProps = { getMovieById };
+
+export default connect(mapStateToProps, mapDispatchProps)(Payment);

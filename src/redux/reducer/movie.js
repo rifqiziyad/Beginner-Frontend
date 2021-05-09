@@ -32,6 +32,28 @@ const movie = (state = initialState, action) => {
         msg: action.payload.response.data.msg,
         pagination: {},
       };
+    case "GET_MOVIE_BY_ID_PENDING":
+      return {
+        ...state,
+        isLoading: true,
+        isError: false,
+      };
+    case "GET_MOVIE_BY_ID_FULFILLED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        dataMovie: action.payload.data.data,
+        msg: action.payload.data.msg,
+      };
+    case "GET_MOVIE_BY_ID_REJECTED":
+      return {
+        ...state,
+        isLoading: false,
+        isError: true,
+        dataMovie: [],
+        msg: action.payload.response.data.msg,
+      };
     default:
       return state;
   }

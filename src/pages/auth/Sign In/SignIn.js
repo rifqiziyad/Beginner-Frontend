@@ -29,7 +29,6 @@ class SignIn extends Component {
 
   handleSignIn = (event) => {
     event.preventDefault();
-    console.log(this.state.form);
     this.props.login(this.state.form).then(() => {
       localStorage.setItem("token", this.props.auth.data.token);
       if (this.props.auth.data.user_status !== 100) {

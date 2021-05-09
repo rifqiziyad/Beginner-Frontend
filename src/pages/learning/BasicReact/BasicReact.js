@@ -65,9 +65,6 @@ class BasicReact extends Component {
     this.props.history.push(`/learning/basic-movie-detail?movieId=${id}`);
   };
 
-  
-
-
   render() {
     console.log(this.state);
     const { name, search } = this.state;

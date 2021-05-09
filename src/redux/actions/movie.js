@@ -4,7 +4,14 @@ export const getAllMovie = (page, limit) => {
   return {
     type: "GET_ALL_MOVIE",
     payload: axiosApiIntances.get(
-      `movie?page=${page}&limit=${limit}&search=&sort=movie_name ASC`
+      `movie?page=${page}&limit=${limit}&search=&sort=movie_name DESC`
     ),
+  };
+};
+
+export const getMovieById = (id) => {
+  return {
+    type: "GET_MOVIE_BY_ID",
+    payload: axiosApiIntances.get(`/movie/${id}`),
   };
 };

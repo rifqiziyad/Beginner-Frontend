@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
+.containerp {
+  background-color: rgb(235, 236, 238);
+  padding: 60px 0;
+}
+
+.col1,
+.col2 {
+  border-radius: 4px;
+  font-family: "Mulish", sans-serif;
+}
+
+.col1 {
+  background-color: white;
+  padding: 30px 60px;
+}
+
+.col2 {
+  padding: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0 40px;
+  margin: 0;
+}
+
+.info {
+  justify-content: space-between;
+  color: #4e4b66;
+}
+
+.info img {
+  width: 25px;
+  height: 7px;
+  margin: auto 0;
+}
+
+.image img {
+  width: 136px;
+  height: 136px;
+  border-radius: 100%;
+  box-shadow: 1px 5px 10px rgb(168, 160, 160);
+}
+
+.image {
+  color: #4e4b66;
+  margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: solid rgb(214, 208, 208) 2px;
+  padding-bottom: 20px;
+}
+
+.image p {
+  font-size: 20px;
+  color: black;
+  font-weight: 600;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.navTop {
+  border-radius: 4px;
+  color: #14142b;
+  font-size: 18px;
+  background-color: white;
+  padding: 30px 40px 0;
+  margin: 0;
+}
+
+.navTop h1 {
+  margin-right: 50px;
+  padding-bottom: 30px;
+  border-radius: 2px;
+  border-bottom: 2px solid #5f2eea;
+}
+
+.detailInfo {
+  border-radius: 4px;
+  margin-top: 40px;
+  padding: 30px;
+  background-color: white;
+}
+
+.inputInfo {
+  justify-content: space-evenly;
+}
+
+.formGroup {
+  width: 45%;
+}
+
+label {
+  padding: 10px 0;
+}
+
+.btn {
+  background-color: #5f2eea;
+  color: white;
+  margin: 40px 0;
+  padding: 10px 60px;
+}
+
+.account {
+  border-radius: 4px;
+  background-color: white;
+  padding: 30px;
+}
+
+.inputPassword {
+  justify-content: space-evenly;
+}

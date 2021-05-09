@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import BasicRedux from "./pages/learning/BasicRedux/BasicRedux";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import { store, persistor } from "./redux/store";
 import PrivateRoute from "./helpers/PrivateRoutes";
 import PublicRoute from "./helpers/PublicRoutes";
+import { PersistGate } from "redux-persist/integration/react";
 
 // import Login from "./pages/auth/Login/login";
 import BasicReact from "./pages/learning/BasicReact/BasicReact";
@@ -19,44 +20,60 @@ import paymentMethod from "./components/PaymentMethod/paymentMethod";
 import Admin from "./pages/main/Admin Page/Admin";
 import SignIn from "./pages/auth/Sign In/SignIn";
 import Register from "./pages/auth/Register/Register";
+import Profile from "./pages/main/Profile Page/Profile";
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
-          <Switch>
-            <PublicRoute
-              restricted={true}
-              path="/login"
-              exact
-              component={SignIn}
-            />
-            <PublicRoute
-              path="/learning/basic-react"
-              exact
-              component={BasicReact}
-            />
-            <PrivateRoute
-              path="/learning/basic-home"
-              exact
-              component={BasicHome}
-            />
-            <Route
-              path="/learning/basic-movie-detail/:id"
-              exact
-              component={BasicMovieDetail}
-            />
-            <Route path="/learning/basic-redux" exact component={BasicRedux} />
-            <PrivateRoute path="/" exact component={HomePage} />
-            <Route path="/movie-detail/:id" exact component={movieDetail} />
-            <Route path="/order-page" exact component={orderPage} />
-            <Route path="/payment" exact component={Payment} />
-            <Route path="/payment-method" exact component={paymentMethod} />
-            <Route path="/Admin" exact component={Admin} />
-            <Route path="/register" exact component={Register} />
-          </Switch>
-        </Router>
+        <PersistGate loading={null} persistor={persistor}>
+          <Router>
+            <Switch>
+              <PublicRoute
+                restricted={true}
+                path="/login"
+                exact
+                component={SignIn}
+              />
+              <PublicRoute
+                path="/learning/basic-react"
+                exact
+                component={BasicReact}
+              />
+              <PrivateRoute
+                path="/learning/basic-home"
+                exact
+                component={BasicHome}
+              />
+              <Route
+                path="/learning/basic-movie-detail/:id"
+                exact
+                component={BasicMovieDetail}
+              />
+              <Route
+                path="/learning/basic-redux"
+                exact
+                component={BasicRedux}
+              />
+              <PublicRoute path="/" exact component={HomePage} />
+              <PublicRoute
+                path="/movie-detail/:id"
+                exact
+                component={movieDetail}
+              />
+              <PrivateRoute path="/order-page" exact component={orderPage} />
+              <PrivateRoute path="/payment" exact component={Payment} />
+              <PublicRoute
+                path="/payment-method"
+                exact
+                component={paymentMethod}
+              />
+              <PrivateRoute path="/Admin" exact component={Admin} />
+              <PublicRoute path="/register" exact component={Register} />
+              <PrivateRoute path="/profile" exact component={Profile} />
+            </Switch>
+          </Router>
+        </PersistGate>
       </Provider>
     );
   }

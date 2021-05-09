@@ -5,10 +5,12 @@ import { Container, Row, Col, Form, NavDropdown } from "react-bootstrap";
 import styles from "./movieDetail.module.css";
 import logoLocation from "../../../assets/img/logo location.png";
 import logoEbu from "../../../assets/img/ebu.id.png";
-import axiosApiIntances from "../../../utils/axios";
+// import axiosApiIntances from "../../../utils/axios";
 import moment from "moment";
 import imgDefault from "../../../assets/img/default.jpg";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { getMovieById } from "../../../redux/actions/movie";
 
 class movieDetail extends Component {
   constructor() {
@@ -24,28 +26,31 @@ class movieDetail extends Component {
 
   getDataById = () => {
     const movieId = this.props.match.params.id;
-    axiosApiIntances
-      .get(`/movie/${movieId}`)
-      .then((res) => {
-        console.log(res.data.data[0]);
-        this.setState({ form: res.data.data[0] });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.props.getMovieById(movieId);
+
+    // axiosApiIntances
+    //   .get(`/movie/${movieId}`)
+    //   .then((res) => {
+    //     this.setState({ form: res.data.data[0] });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   render() {
+    console.log(this.props);
     const {
-      movie_name,
-      movie_category,
-      movie_release_date,
+      casts,
+      directed,
       duration_hour,
       duration_minute,
-      directed,
-      casts,
+      movie_category,
+      movie_image,
+      movie_name,
+      movie_release_date,
       synopsis,
-    } = this.state.form;
+    } = this.props.movieByid.dataMovie[0];
     return (
       <>
         <NavBar />
@@ -53,7 +58,14 @@ class movieDetail extends Component {
           <Row className={styles.row}>
             <Col md={3}>
               <div className={styles.col1}>
-                <img src={imgDefault} alt="imgDetail" />
+                {movie_image.length > 0 ? (
+                  <img
+                    src={`http://localhost:3001/api/${movie_image}`}
+                    alt=""
+                  />
+                ) : (
+                  <img src={imgDefault} alt="" />
+                )}
               </div>
             </Col>
             <Col className={styles.col2} md={7}>
@@ -223,4 +235,10 @@ class movieDetail extends Component {
   }
 }
 
-export default movieDetail;
+const mapStateToProps = (state) => ({
+  movieByid: state.movie,
+});
+
+const mapDispatchProps = { getMovieById };
+
+export default connect(mapStateToProps, mapDispatchProps)(movieDetail);

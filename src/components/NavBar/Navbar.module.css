@@ -65,6 +65,14 @@
   position: relative;
 }
 
+.button {
+  margin-left: 40px;
+  background-color: #5f2eea;
+  color: white;
+  padding: 0 50px;
+  border: #5f2eea solid 1px;
+}
+
 @media only screen and (max-width: 1000px) {
   .navbar {
     padding: 20px;

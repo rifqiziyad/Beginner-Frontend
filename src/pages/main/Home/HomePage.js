@@ -8,7 +8,9 @@ import img2 from "../../../assets/img/image-2.png";
 import img3 from "../../../assets/img/image-3.png";
 import Cards from "../../../components/Cards/Card";
 import Cards2 from "../../../components/Cards2/Card2";
-import axiosApiIntances from "../../../utils/axios";
+// import axiosApiIntances from "../../../utils/axios";
+import { connect } from "react-redux";
+import { getAllMovie } from "../../../redux/actions/movie";
 
 class HomePage extends Component {
   constructor(props) {
@@ -17,7 +19,7 @@ class HomePage extends Component {
       form: {
         movieName: "",
         movieCategory: "",
-        movieReleaseDate: "22/4/2021",
+        movieReleaseDate: "",
       },
       data: [],
       movieMonth: [],
@@ -82,26 +84,26 @@ class HomePage extends Component {
 
   componentDidMount() {
     this.getData();
-    console.log(this.state.form);
   }
 
   getData = () => {
     console.log("Get Data !");
     const { page, limit } = this.state;
-    this.setState({ isLoading: true });
-    axiosApiIntances
-      .get(`movie?page=${page}&limit=${limit}&search=&sort=movie_id ASC`)
-      .then((res) => {
-        this.setState({ data: res.data.data, pagination: res.data.pagination });
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setTimeout(() => {
-          this.setState({ isLoading: false });
-        }, 500);
-      });
+    this.props.getAllMovie(page, limit);
+    //   this.setState({ isLoading: true });
+    //   axiosApiIntances
+    //     .get(`movie?page=${page}&limit=${limit}&search=&sort=movie_id ASC`)
+    //     .then((res) => {
+    //       this.setState({ data: res.data.data, pagination: res.data.pagination });
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     })
+    //     .finally(() => {
+    //       setTimeout(() => {
+    //         this.setState({ isLoading: false });
+    //       }, 500);
+    //     });
   };
 
   handlePageClick = (event) => {
@@ -112,9 +114,8 @@ class HomePage extends Component {
   };
 
   handleMonth = (num) => {
-    console.log(num);
-    const { data } = this.state;
-    const newData = data.filter(
+    const { dataMovie } = this.props.movie;
+    const newData = dataMovie.filter(
       (e) => e.movie_release_date.split("-")[1] === num
     );
     console.log(newData);
@@ -122,15 +123,15 @@ class HomePage extends Component {
   };
 
   handleViewAll = () => {
-    this.getData();
+    console.log("View All");
   };
 
   render() {
-    // const { totalPage } = this.state.pagination;
     const { isLoading } = this.state;
+    console.log(this.props);
     return (
       <>
-        <Navbar />
+        <Navbar {...this.props} />
         <Container fluid className={styles.container}>
           <Row className={styles.row1}>
             <Col sm={6} className={styles.col1}>
@@ -149,7 +150,7 @@ class HomePage extends Component {
                 <h1>Now Showing</h1>
                 <div className={styles.borderBottom}></div>
               </div>
-              <p>View all</p>
+              <p onClick={this.handleViewAll}>View all</p>
             </div>
             <div className={styles.cards}>
               {isLoading ? (
@@ -157,7 +158,7 @@ class HomePage extends Component {
                   <Spinner animation="border" variant="warning" />
                 </Col>
               ) : (
-                this.state.data.map((item, index) => {
+                this.props.movie.dataMovie.map((item, index) => {
                   return (
                     <Col md={3} key={index}>
                       <Cards data={item} />
@@ -186,7 +187,7 @@ class HomePage extends Component {
           <div className={styles.content2}>
             <div className={styles.upcoming}>
               <p className={styles.upcomingMovies}>Upcoming Movies</p>
-              <p onClick={() => this.handleViewAll()}>View all</p>
+              <p>View all</p>
             </div>
 
             <div className={styles.month}>
@@ -255,4 +256,10 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+const mapStateToProps = (state) => ({
+  movie: state.movie,
+});
+
+const mapDispatchProps = { getAllMovie };
+
+export default connect(mapStateToProps, mapDispatchProps)(HomePage);

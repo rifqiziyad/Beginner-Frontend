@@ -7,13 +7,13 @@ import {
   Button,
   Dropdown,
   Spinner,
-  Alert,
+  // Alert,
 } from "react-bootstrap";
 import NavbarAdmin from "../../../components/NavBar Admin/NavbarAdmin";
 import styles from "./Admin.module.css";
 import Footer from "../../../components/Footer/Footer";
 import CardAdmin from "../../../components/CardsAdmin/CardAdmin";
-import axiosApiIntances from "../../../utils/axios";
+// import axiosApiIntances from "../../../utils/axios";
 import ReactPaginate from "react-paginate";
 import { connect } from "react-redux";
 import {
@@ -136,7 +136,6 @@ class Admin extends Component {
   };
 
   deleteData = (id) => {
-    console.log("Delete Data");
     window.confirm("Yakin Ingin Delete")
       ? this.props.deleteMovie(id).then(() => {
           this.getData();
@@ -232,7 +231,6 @@ class Admin extends Component {
   };
 
   render() {
-    // console.log(this.props);
     const { isUpdate } = this.state;
     const { totalPage } = this.props.admin.pagination;
     const { isLoading } = this.props.admin;

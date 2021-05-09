@@ -1,20 +1,26 @@
 import React, { Component } from "react";
 import { Col, Button } from "react-bootstrap";
 import styles from "./CardAdmin.module.css";
+import imgDefault from "../../assets/img/default.jpg";
 
 class CardAdmin extends Component {
   render() {
-    console.log(this.props);
-    const { movie_id, movie_name, movie_category } = this.props.data;
+    const {
+      movie_id,
+      movie_name,
+      movie_category,
+      movie_image,
+    } = this.props.data;
     const { handleUpdate, handleDelete, data } = this.props;
     return (
       <>
         {" "}
         <Col className={styles.imgCard}>
-          <img
-            src="https://www.a1hosting.net/wp-content/themes/arkahost/assets/images/default.jpg"
-            alt=""
-          />
+          {movie_image.length > 0 ? (
+            <img src={`http://localhost:3001/api/${movie_image}`} alt="" />
+          ) : (
+            <img src={imgDefault} alt="" />
+          )}
           <p className={styles.movieName}>{movie_name}</p>
           <p className={styles.genre}>{movie_category} </p>
           <Col>
