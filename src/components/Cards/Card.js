@@ -17,6 +17,7 @@ class Cards extends Component {
       movie_category,
       movie_image,
     } = this.props.data;
+    // console.log(this.props.data);
     return (
       <>
         <Col className={styles.imgCard}>

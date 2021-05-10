@@ -66,7 +66,6 @@ class Payment extends Component {
     let year = today.getFullYear();
     let hour = today.getHours();
     let minutes = today.getMinutes();
-    let prepand = hour ? "AM" : "PM";
     return (
       <>
         <NavBar />

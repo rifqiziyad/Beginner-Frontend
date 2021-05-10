@@ -128,7 +128,6 @@ class HomePage extends Component {
 
   render() {
     const { isLoading } = this.state;
-    console.log(this.props);
     return (
       <>
         <Navbar {...this.props} />
