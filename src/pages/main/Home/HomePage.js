@@ -118,7 +118,6 @@ class HomePage extends Component {
     const newData = dataMovie.filter(
       (e) => e.movie_release_date.split("-")[1] === num
     );
-    console.log(newData);
     this.setState({ movieMonth: newData });
   };
 

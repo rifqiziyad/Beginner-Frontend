@@ -6,6 +6,7 @@ import logoGoogle from "../../../assets/img/google-logo.png";
 import logoFacebook from "../../../assets/img/facebook- logo.png";
 import { connect } from "react-redux";
 import { login } from "../../../redux/actions/auth";
+import Swal from "sweetalert2";
 
 class SignIn extends Component {
   constructor(props) {
@@ -29,14 +30,28 @@ class SignIn extends Component {
 
   handleSignIn = (event) => {
     event.preventDefault();
-    this.props.login(this.state.form).then(() => {
-      localStorage.setItem("token", this.props.auth.data.token);
-      if (this.props.auth.data.user_status !== 100) {
-        alert(`Verification your account first \nCheck your email `);
-      } else {
-        this.props.history.push("/");
-      }
-    });
+    this.props
+      .login(this.state.form)
+      .then((res) => {
+        localStorage.setItem("token", res.value.data.data.token);
+        Swal.fire({
+          icon: "success",
+          title: "Success Login",
+          confirmButtonText: "Ok",
+          allowOutsideClick: false,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.props.history.push("/");
+          }
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: err.response.data.msg,
+          allowOutsideClick: false,
+        });
+      });
   };
 
   render() {

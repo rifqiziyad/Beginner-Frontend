@@ -60,7 +60,7 @@ class movieDetail extends Component {
               <div className={styles.col1}>
                 {movie_image.length > 0 ? (
                   <img
-                    src={`http://localhost:3001/api/${movie_image}`}
+                    src={`http://localhost:3001/backend1/api/${movie_image}`}
                     alt=""
                   />
                 ) : (

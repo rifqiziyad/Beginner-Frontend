@@ -4,6 +4,7 @@ import styles from "./Navbar.module.css";
 import imgSearch from "../../assets/img/Search.png";
 import { Link } from "react-router-dom";
 import axiosApiIntances from "../../utils/axios";
+import imgDefault from "../../assets/img/default.jpg";
 
 class NavBar extends Component {
   constructor(props) {
@@ -16,12 +17,8 @@ class NavBar extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.handleSignIn();
-  // }
-
   handleSignIn = () => {
-    this.props.history.push("/login");
+    this.props.history.push("/register");
     console.log("Sign In");
   };
 
@@ -30,14 +27,12 @@ class NavBar extends Component {
     this.props.history.push("/");
   };
 
-  handleParams = (id) => {
-    // this.props.history.push(`/movie-detail${id}`);
-    console.log(id);
+  handleParams = (data) => {
+    this.props.history.push(`/movie-detail/${data.movie_id}`);
   };
 
   changeText = (event) => {
     this.setState({ search: event.target.value, isShow: true });
-    console.log(this.state.search);
     axiosApiIntances
       .get(
         `movie?page=${1}&limit=${100}&search=${
@@ -49,10 +44,13 @@ class NavBar extends Component {
       });
   };
 
+  handleCancel = () => {
+    this.setState({ isShow: false });
+    this.setState({ search: "" });
+  };
+
   render() {
     const { isShow } = this.state;
-    console.log(this.state.id);
-
     return (
       <>
         <Navbar className={styles.navbar} expand="lg">
@@ -75,8 +73,24 @@ class NavBar extends Component {
             <Form>
               <Row>
                 <Row className={styles.inputMovieName}>
-                  <Col md={2} className={styles.imgSearchMovie}>
-                    <img className={styles.imgSearch} src={imgSearch} alt="" />
+                  <Col
+                    md={2}
+                    className={
+                      isShow === false
+                        ? styles.imgSearchMovie
+                        : styles.inputCancel
+                    }
+                    onClick={isShow && this.handleCancel}
+                  >
+                    {isShow === false ? (
+                      <img
+                        className={styles.imgSearch}
+                        src={imgSearch}
+                        alt=""
+                      />
+                    ) : (
+                      <h5>X</h5>
+                    )}
                   </Col>
 
                   <Col md={10} className={styles.inputSearch}>
@@ -98,29 +112,42 @@ class NavBar extends Component {
                   variant="light"
                   className={styles.button}
                 >
-                  {localStorage.getItem("token") ? "Sign Out" : "Sign In"}
+                  {localStorage.getItem("token") ? "Sign Out" : "Sign Up"}
                 </Button>
               </Row>
-              {isShow ? (
-                <Col
-                  className={styles.getMovieSearch}
-                  onClick={() => this.handleParams(this.state.dataMovie)}
-                >
-                  {this.state.dataMovie.map((item, index) => {
-                    return (
-                      <div className={styles.getSearch} key={index}>
+
+              <Col
+                className={styles.getMovieSearch}
+                style={
+                  isShow ? { visibility: "visible" } : { visibility: "hidden" }
+                }
+              >
+                {this.state.dataMovie.map((item, index) => {
+                  return (
+                    <div
+                      className={styles.getSearch}
+                      key={index}
+                      onClick={() => this.handleParams(item)}
+                    >
+                      {item.movie_image ? (
                         <img
-                          src={`http://localhost:3001/api/${item.movie_image}`}
+                          src={
+                            "http://localhost:3001/backend1/api/" +
+                            item.movie_image
+                          }
                           alt=""
                         />
+                      ) : (
+                        <img src={imgDefault} alt="" />
+                      )}
+                      <div>
                         <label>{item.movie_name}</label>
+                        <h5>{item.movie_category}</h5>
                       </div>
-                    );
-                  })}
-                </Col>
-              ) : (
-                console.log("false")
-              )}
+                    </div>
+                  );
+                })}
+              </Col>
             </Form>
           </Navbar.Collapse>
         </Navbar>

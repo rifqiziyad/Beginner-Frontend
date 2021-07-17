@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import backgroundMarvel from "../../../assets/img/marvel.png";
 import styles from "./Register.module.css";
 import logoGoogle from "../../../assets/img/google-logo.png";
@@ -7,6 +7,7 @@ import logoFacebook from "../../../assets/img/facebook- logo.png";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { register } from "../../../redux/actions/auth";
+import Swal from "sweetalert2";
 
 class Register extends Component {
   constructor(props) {
@@ -17,8 +18,12 @@ class Register extends Component {
         userPassword: "",
         userName: "",
       },
+      show: false,
     };
   }
+
+  handleClose = () => this.setState({ show: true });
+  handleTrue = () => this.setState({ show: false });
 
   changeText = (event) => {
     this.setState({
@@ -31,13 +36,34 @@ class Register extends Component {
 
   handleRegister = (event) => {
     event.preventDefault();
-    this.props.register(this.state.form).then(() => {
-      this.props.history.push("/login");
-    });
+    this.props
+      .register(this.state.form)
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title:
+            "Success register account \n check your email for verification",
+          confirmButtonText: "Ok",
+          allowOutsideClick: false,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.props.history.push("/login");
+          }
+        });
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: err.response.data.msg,
+          allowOutsideClick: false,
+        });
+      });
   };
 
   render() {
-    console.log(this.props);
+    if (this.props.auth.isLoading) {
+      Swal.showLoading();
+    }
     const { userEmail, userPassword, userName } = this.state;
     return (
       <>
@@ -62,6 +88,7 @@ class Register extends Component {
                     name="userName"
                     value={userName}
                     onChange={(event) => this.changeText(event)}
+                    required
                   />
                 </Form.Group>
                 <Form.Group controlId="formBasicEmail">
@@ -73,6 +100,7 @@ class Register extends Component {
                     name="userEmail"
                     value={userEmail}
                     onChange={(event) => this.changeText(event)}
+                    required
                   />
                 </Form.Group>
 
@@ -85,14 +113,13 @@ class Register extends Component {
                     name="userPassword"
                     value={userPassword}
                     onChange={(event) => this.changeText(event)}
+                    required
                   />
                 </Form.Group>
                 <Button className={styles.submit} type="submit">
                   Join for free now
                 </Button>
-                {this.props.auth.isError && (
-                  <Alert variant="danger">{this.props.auth.msg}</Alert>
-                )}
+
                 <p className={styles.forgot}>
                   Do you already have an account? <Link to="/login">Login</Link>
                 </p>

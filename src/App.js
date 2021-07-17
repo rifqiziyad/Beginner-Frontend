@@ -36,6 +36,12 @@ class App extends Component {
                 component={SignIn}
               />
               <PublicRoute
+                restricted={true}
+                path="/register"
+                exact
+                component={Register}
+              />
+              <PublicRoute
                 path="/learning/basic-react"
                 exact
                 component={BasicReact}
@@ -68,8 +74,8 @@ class App extends Component {
                 exact
                 component={paymentMethod}
               />
-              <PrivateRoute path="/Admin" exact component={Admin} />
-              <PublicRoute path="/register" exact component={Register} />
+              <PrivateRoute path="/admin" exact component={Admin} />
+
               <PrivateRoute path="/profile" exact component={Profile} />
             </Switch>
           </Router>

@@ -14,6 +14,7 @@
 
 .col1 img {
   width: 100%;
+  height: 300px;
   border-radius: 5px;
 }
 
@@ -31,26 +32,37 @@
 
 .col2 h2 {
   margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 32px;
 }
 
 .col2 h1 {
   font-size: 18px;
   color: #4e4b66;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .info1,
 .info2 {
   display: flex;
-  margin-top: 40px;
 }
 
-.duration {
-  margin-right: 80px;
+.info2 {
+  margin-top: 20px;
 }
 
+.duration,
 .releaseDate {
-  margin-right: 120px;
+  width: 30%;
+}
+
+.directed,
+.casts {
+  width: 70%;
+}
+
+.casts h3 {
+  line-height: 20px;
 }
 
 .content p {
