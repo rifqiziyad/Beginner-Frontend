@@ -26,19 +26,16 @@ class Login extends Component {
 
   handleLogin = (event) => {
     event.preventDefault();
-    console.log(this.state.form);
     this.props.login(this.state.form).then(() => {
-      // [1]
-      // console.log(result.value.data.data.token);
-      // [2]
-      console.log(this.props.auth.data.token);
       localStorage.setItem("token", this.props.auth.data.token);
+      localStorage.setItem("user_id", this.props.auth.data.user_id);
       this.props.history.push("/");
     });
   };
 
   render() {
     const { userEmail, userPassword } = this.state;
+
     return (
       <>
         <Container>

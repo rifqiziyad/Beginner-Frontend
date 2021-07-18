@@ -3,42 +3,58 @@ import Footer from "../../../components/Footer/Footer";
 import NavBar from "../../../components/NavBar/NavBar";
 import styles from "./orderPage.module.css";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
-import logoCinemaOne from "../../../assets/img/cineone21.png";
 import Seat from "../../../components/Seat/seat";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getMovieById } from "../../../redux/actions/movie";
+import Swal from "sweetalert2";
 
 class Payment extends Component {
   constructor() {
     super();
     this.state = {
-      selectedSeat: [],
+      selectedSeat: [...localStorage.getItem("seat").split(",")],
       reservedSeat: ["A1", "A7", "A14"],
     };
   }
-  bookingSeat = (seat) => {
-    this.setState({
-      selectedSeat: [...this.state.selectedSeat, seat],
-    });
+
+  componentDidUpdate() {
     localStorage.setItem("seat", this.state.selectedSeat);
-    // if (this. === seat) {
-    //   console.log("tidak bisa");
-    // }
-    console.log(this.state.selectedSeat);
+  }
+
+  bookingSeat = (seat) => {
+    if (this.state.selectedSeat.includes(seat)) {
+      const indexSeat = this.state.selectedSeat.indexOf(seat);
+      this.state.selectedSeat.splice(indexSeat, 1);
+      this.setState({ selectedSeat: this.state.selectedSeat });
+    } else {
+      this.setState({
+        selectedSeat: [...this.state.selectedSeat, seat],
+      });
+    }
   };
 
   handleChangeMovie = () => {
     this.props.history.push("/");
   };
 
+  handleCheckoutNow = () => {
+    if (this.state.selectedSeat.length <= 0) {
+      Swal.fire({
+        title: "Please choose a seat !",
+        confirmButtonText: "Ok",
+      });
+    } else {
+      this.props.history.push("/payment");
+    }
+  };
+
   render() {
-    const localStorageSeat = localStorage.seat.split(",");
     const { reservedSeat, selectedSeat } = this.state;
     const { movie_name } = this.props.movieByid.dataMovie[0];
-    var today = new Date();
-    var day = today.getDay();
-    var daylist = [
+    let today = new Date();
+    let day = today.getDay();
+    let daylist = [
       "Sunday",
       "Monday",
       "Tuesday",
@@ -64,8 +80,11 @@ class Payment extends Component {
       "Desember",
     ];
     let year = today.getFullYear();
-    let hour = today.getHours();
-    let minutes = today.getMinutes();
+    localStorage.setItem(
+      "date",
+      `${daylist[day]}, ${date} ${monthList[month]} ${year}`
+    );
+    localStorage.setItem("movie_name", movie_name);
     return (
       <>
         <NavBar />
@@ -163,9 +182,9 @@ class Payment extends Component {
                   Change your movie
                 </Link>
                 <Link
-                  to="/payment"
                   className={styles.buttonCheckoutNow}
                   variant="outline-primary"
+                  onClick={this.handleCheckoutNow}
                 >
                   Checkout now
                 </Link>
@@ -174,8 +193,13 @@ class Payment extends Component {
             <Col className={styles.col2} xs={4}>
               <h2 className={styles.orderInfo}>Order Info</h2>
               <div className={styles.sideRight}>
-                <img src={logoCinemaOne} alt="Cinema One 21" />
-                <h1>CineOne21 Cinema</h1>
+                <img
+                  src={`http://localhost:3001/backend1/api/${localStorage.getItem(
+                    "premiere_image"
+                  )}`}
+                  alt="Cinema One 21"
+                />
+                <h1>{localStorage.getItem("premiere_name")}</h1>
                 <div className={styles.info}>
                   <div className={styles.movieName}>
                     <p>Movie Selected</p>
@@ -185,22 +209,24 @@ class Payment extends Component {
                     <p>
                       {daylist[day]}, {date} {monthList[month]} {year}
                     </p>
-                    <h3>
-                      {hour}: {minutes}{" "}
-                    </h3>
+                    <h3>{localStorage.getItem("hour")}</h3>
                   </div>
                   <div className={styles.oneTicketPrice}>
                     <p>One ticket price</p>
-                    <h3>$10</h3>
+                    <h3>${localStorage.getItem("premiere_price")}</h3>
                   </div>
                   <div className={styles.seatCoosed}>
                     <p>Seat choosed</p>
-                    <h3>{localStorage.getItem("seat")}</h3>
+                    <h3>{selectedSeat.join(",")}</h3>
                   </div>
                   <hr />
                   <div className={styles.totalPayment}>
                     <h5>Total Payment</h5>
-                    <h4>${10 * localStorageSeat.length}</h4>
+                    <h4>
+                      $
+                      {localStorage.getItem("premiere_price") *
+                        selectedSeat.length}
+                    </h4>
                   </div>
                 </div>
               </div>

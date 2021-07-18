@@ -87,7 +87,6 @@ class HomePage extends Component {
   }
 
   getData = () => {
-    console.log("Get Data !");
     const { page, limit } = this.state;
     this.props.getAllMovie(page, limit);
     //   this.setState({ isLoading: true });
@@ -233,19 +232,6 @@ class HomePage extends Component {
                 activeClassName={styles.active}
               />
             </Row> */}
-          </div>
-
-          <div className={styles.content3}>
-            <p>Be the vanguard of the</p>
-            <h1>Moviegoers</h1>
-            <div className={styles.input}>
-              <input placeholder="Type your email"></input>
-              <button>Join Now</button>
-              <p>
-                By joining you as a Tickitz member, <br />
-                we will always send you the latest updates via email .
-              </p>
-            </div>
           </div>
         </Container>
         <Footer />

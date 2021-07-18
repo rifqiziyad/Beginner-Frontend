@@ -4,42 +4,63 @@ import NavBar from "../../../components/NavBar/NavBar";
 import { Container, Row, Col, Form, NavDropdown } from "react-bootstrap";
 import styles from "./movieDetail.module.css";
 import logoLocation from "../../../assets/img/logo location.png";
-import logoEbu from "../../../assets/img/ebu.id.png";
-// import axiosApiIntances from "../../../utils/axios";
 import moment from "moment";
 import imgDefault from "../../../assets/img/default.jpg";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getMovieById } from "../../../redux/actions/movie";
+import axiosApiIntances from "../../../utils/axios";
 
 class movieDetail extends Component {
   constructor() {
     super();
     this.state = {
-      form: {},
+      premiereData: [],
+      hour: "",
+      premiere_id: 0,
     };
   }
 
   componentDidMount() {
     this.getDataById();
+    this.getPremiereData();
   }
 
   getDataById = () => {
     const movieId = this.props.match.params.id;
     this.props.getMovieById(movieId);
+  };
 
-    // axiosApiIntances
-    //   .get(`/movie/${movieId}`)
-    //   .then((res) => {
-    //     this.setState({ form: res.data.data[0] });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+  getPremiereData = () => {
+    axiosApiIntances
+      .get("/premiere")
+      .then((res) => {
+        this.setState({ premiereData: res.data.data });
+      })
+      .catch((err) => {
+        alert(err.response);
+      });
+  };
+
+  handleClock = (data) => {
+    const hour = `${data.show_time_clock.split(":")[0]}:${
+      data.show_time_clock.split(":")[1]
+    }`;
+    this.setState({ hour, premiere_id: data.premiere_id });
+  };
+
+  redirectedOrderPage = (image, name, price) => {
+    localStorage.setItem("premiere_image", image);
+    localStorage.setItem("premiere_name", name);
+    localStorage.setItem("premiere_price", price);
+    localStorage.setItem("hour", this.state.hour);
+    this.props.history.push("/order-page");
+  };
+
+  convertTime = (data) => {
+    return `${data.split(":")[0]}:${data.split(":")[1]}`;
   };
 
   render() {
-    console.log(this.props);
     const {
       casts,
       directed,
@@ -58,7 +79,7 @@ class movieDetail extends Component {
           <Row className={styles.row}>
             <Col md={3}>
               <div className={styles.col1}>
-                {movie_image.length > 0 ? (
+                {movie_image ? (
                   <img
                     src={`http://localhost:3001/backend1/api/${movie_image}`}
                     alt=""
@@ -130,102 +151,63 @@ class movieDetail extends Component {
             </Row>
           </div>
           <div className={styles.cards}>
-            <div className={styles.cinemaCard}>
-              <div className={styles.cinema}>
-                <img src={logoEbu} alt="ebu.id" />
-                <div className={styles.address}>
-                  <h2>Ebv.id</h2>
-                  <p>Whatever street No.12, South Purwokerto</p>
+            {this.state.premiereData.map((item, index) => {
+              return (
+                <div className={styles.cinemaCard} key={index}>
+                  <div className={styles.cinema}>
+                    <img
+                      src={`http://localhost:3001/backend1/api/${item.premiere_image}`}
+                      alt=""
+                    />
+                    <div className={styles.address}>
+                      <h2>{item.premiere_name}</h2>
+                      <p>{item.location_address}</p>
+                    </div>
+                  </div>
+                  <hr />
+                  <div className={styles.showTime}>
+                    {item.show_time.map((it, ind) => {
+                      return (
+                        <div
+                          className={
+                            this.state.hour ===
+                              this.convertTime(it.show_time_clock) &&
+                            it.premiere_id === this.state.premiere_id
+                              ? styles.clickTime
+                              : styles.time
+                          }
+                          key={ind}
+                          onClick={() => {
+                            this.handleClock(it);
+                          }}
+                        >
+                          <h3>{this.convertTime(it.show_time_clock)}</h3>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className={styles.price}>
+                    <h1>Price</h1>
+                    <h5>${item.premiere_price}/seat</h5>
+                  </div>
+                  <div className={styles.buttonBookNow}>
+                    <button
+                      onClick={() =>
+                        this.redirectedOrderPage(
+                          item.premiere_image,
+                          item.premiere_name,
+                          item.premiere_price
+                        )
+                      }
+                      className={styles.bookNow}
+                      variant="light"
+                    >
+                      Book Now
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <hr />
-              <div className={styles.time}>
-                <h3>08:30am</h3>
-                <h3>09:30am</h3>
-                <h3>11:30am</h3>
-                <h3>02:30pm</h3>
-                <h3>03:30pm</h3>
-                <h3>05:30pm</h3>
-                <h3>07:30pm</h3>
-              </div>
-              <div className={styles.price}>
-                <h1>Price</h1>
-                <h5>$10.00/seat</h5>
-              </div>
-              <div className={styles.buttonBookNow}>
-                <Link
-                  to="/order-page"
-                  className={styles.bookNow}
-                  variant="light"
-                >
-                  Book Now
-                </Link>
-              </div>
-            </div>
-            <div className={styles.cinemaCard}>
-              <div className={styles.cinema}>
-                <img src={logoEbu} alt="ebu.id" />
-                <div className={styles.address}>
-                  <h2>Ebv.id</h2>
-                  <p>Whatever street No.12, South Purwokerto</p>
-                </div>
-              </div>
-              <hr />
-              <div className={styles.time}>
-                <h3>08:30am</h3>
-                <h3>09:30am</h3>
-                <h3>11:30am</h3>
-                <h3>02:30pm</h3>
-                <h3>03:30pm</h3>
-                <h3>05:30pm</h3>
-                <h3>07:30pm</h3>
-              </div>
-              <div className={styles.price}>
-                <h1>Price</h1>
-                <h5>$10.00/seat</h5>
-              </div>
-              <div className={styles.buttonBookNow}>
-                <Link
-                  to="/order-page"
-                  className={styles.bookNow}
-                  variant="light"
-                >
-                  Book Now
-                </Link>
-              </div>
-            </div>
-            <div className={styles.cinemaCard}>
-              <div className={styles.cinema}>
-                <img src={logoEbu} alt="ebu.id" />
-                <div className={styles.address}>
-                  <h2>Ebv.id</h2>
-                  <p>Whatever street No.12, South Purwokerto</p>
-                </div>
-              </div>
-              <hr />
-              <div className={styles.time}>
-                <h3>08:30am</h3>
-                <h3>09:30am</h3>
-                <h3>11:30am</h3>
-                <h3>02:30pm</h3>
-                <h3>03:30pm</h3>
-                <h3>05:30pm</h3>
-                <h3>07:30pm</h3>
-              </div>
-              <div className={styles.price}>
-                <h1>Price</h1>
-                <h5>$10.00/seat</h5>
-              </div>
-              <div className={styles.buttonBookNow}>
-                <Link
-                  to="/order-page"
-                  className={styles.bookNow}
-                  variant="light"
-                >
-                  Book Now
-                </Link>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </Container>
 

@@ -13,15 +13,16 @@
 .movieSelected {
   margin: 20px 10px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 20px 40px;
   background-color: white;
   border-radius: 4px;
 }
 
-h2 {
+.col1 h2 {
   font-family: Mulish;
-  font-weight: bold;
+  font-weight: 700;
   font-size: 24px;
   color: #14142b;
 }
@@ -50,6 +51,13 @@ h2 {
   padding: 20px;
 }
 
+.movieSelected h2 {
+  font-family: Mulish;
+  font-weight: 600;
+  font-size: 24px;
+  color: #000000;
+}
+
 .buttonCheckout {
   display: flex;
   justify-content: space-between;
@@ -69,6 +77,8 @@ h2 {
 .buttonCheckoutNow:hover {
   background-color: #5f2eea;
   border: 2px solid #5f2eea;
+  text-decoration: none;
+  color: white;
 }
 
 .col2 {

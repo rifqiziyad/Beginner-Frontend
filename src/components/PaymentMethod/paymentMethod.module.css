@@ -29,6 +29,18 @@
   position: relative;
 }
 
+.googlePay:hover,
+.visa:hover,
+.gopay:hover,
+.paypal:hover,
+.dana:hover,
+.bca:hover,
+.bri:hover,
+.ovo:hover {
+  background-color: rgb(221, 187, 255);
+  cursor: pointer;
+}
+
 .googlePay img,
 .visa img,
 .gopay img,
@@ -37,9 +49,32 @@
 .bca img,
 .bri img,
 .ovo img {
-  /* display: block;
-  margin-left: auto;
-  margin-right: auto; */
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.googlePaySelected {
+  background-color: #5f2eea;
+  border: solid rgb(235, 227, 227) 1px;
+  width: 146px;
+  height: 56px;
+  border-radius: 4px;
+  margin: 10px;
+  position: relative;
+}
+
+.googlePaySelected img,
+.visa img,
+.gopay img,
+.paypal img,
+.dana img,
+.bca img,
+.bri img,
+.ovo img {
   position: absolute;
   right: 0;
   left: 0;
@@ -85,4 +120,8 @@
   background-color: #5f2eea;
   color: white;
   border: #5f2eea solid 2px;
+}
+
+.btnPrev {
+  text-decoration: none;
 }

@@ -29,7 +29,6 @@ class Seat extends Component {
 
   render() {
     const { seatAlphabet, selected, reserved, bookingSeat } = this.props;
-    // console.log(this.props);
     return (
       <>
         <Row className={styles.rowSeat}>

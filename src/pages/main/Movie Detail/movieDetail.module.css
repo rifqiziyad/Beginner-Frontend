@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 
 .container {
-  background-color: rgb(231, 229, 229);
+  background-color: rgb(241, 241, 241);
   padding-bottom: 70px;
 }
 .row {
@@ -23,6 +23,7 @@
   box-sizing: border-box;
   border-radius: 16px;
   padding: 30px;
+  width: 270px;
 }
 
 .col2 {
@@ -123,21 +124,36 @@
 }
 
 .cards {
+  padding: 10px 60px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: 730px;
+  overflow-y: scroll;
+  box-shadow: inset #5f2eea 0px 0px 10px;
 }
 
 .cinemaCard {
   background-color: white;
-  width: 360px;
+  width: 340px;
+  height: 310px;
   padding: 20px;
   font-family: Mulish;
   border-radius: 4px;
   box-shadow: 10px 10px 20px rgb(201, 194, 194);
+  margin: 20px 0;
 }
 
 .cinema {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.address {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
 }
 
 .address p {
@@ -155,18 +171,38 @@
 }
 
 .cinema img {
-  margin-right: 30px !important;
+  width: 30%;
   margin: auto;
 }
 
-.time {
+.showTime {
   display: flex;
   flex-wrap: wrap;
-  line-height: 30px;
+  height: 20%;
+  align-items: center;
 }
 
-.time h3 {
-  margin-right: 13px;
+.time {
+  width: 25%;
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.clickTime {
+  background-color: #5f2eea;
+  cursor: pointer;
+  color: white;
+  width: 25%;
+  padding: 5px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.time:hover {
+  background-color: #5f2eea;
+  cursor: pointer;
+  color: white;
 }
 
 .price {
