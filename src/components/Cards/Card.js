@@ -29,13 +29,11 @@ class Cards extends Component {
           <p className={styles.genre}>{movie_category}</p>
           <div className={styles.button}>
             <Button
-              variant="light"
-              className={styles.buttonDetail}
+              className={styles.buttonBookNow}
               onClick={() => this.handleMovieDetail(movie_id)}
             >
-              Details
+              Book Now
             </Button>
-            <Button className={styles.buttonBookNow}>Book Now</Button>
           </div>
         </Col>
       </>

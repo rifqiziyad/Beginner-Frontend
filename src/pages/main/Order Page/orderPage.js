@@ -13,7 +13,7 @@ class Payment extends Component {
   constructor() {
     super();
     this.state = {
-      selectedSeat: [...localStorage.getItem("seat").split(",")],
+      selectedSeat: [],
       reservedSeat: ["A1", "A7", "A14"],
     };
   }
@@ -87,7 +87,7 @@ class Payment extends Component {
     localStorage.setItem("movie_name", movie_name);
     return (
       <>
-        <NavBar />
+        <NavBar {...this.props} />
         <Container fluid className={styles.container}>
           <Row className={styles.row1}>
             <Col className={styles.col1} xs={7}>

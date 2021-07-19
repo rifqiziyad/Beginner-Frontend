@@ -20,7 +20,7 @@ class Payment extends Component {
 
     return (
       <>
-        <NavBar />
+        <NavBar {...this.props} />
         <Container fluid className={styles.container}>
           <Row className={styles.row}>
             <Col className={styles.col1} md={7}>

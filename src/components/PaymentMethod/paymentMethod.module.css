@@ -57,8 +57,15 @@
   margin: auto;
 }
 
-.googlePaySelected {
-  background-color: #5f2eea;
+.googlePaySelected,
+.visaSelected,
+.gopaySelected,
+.paypalSelected,
+.danaSelected,
+.bcaSelected,
+.briSelected,
+.ovoSelected {
+  background-color: #858585;
   border: solid rgb(235, 227, 227) 1px;
   width: 146px;
   height: 56px;
@@ -68,13 +75,13 @@
 }
 
 .googlePaySelected img,
-.visa img,
-.gopay img,
-.paypal img,
-.dana img,
-.bca img,
-.bri img,
-.ovo img {
+.visaSelected img,
+.gopaySelected img,
+.paypalSelected img,
+.danaSelected img,
+.bcaSelected img,
+.briSelected img,
+.ovoSelected img {
   position: absolute;
   right: 0;
   left: 0;

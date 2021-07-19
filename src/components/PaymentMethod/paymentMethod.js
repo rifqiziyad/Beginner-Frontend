@@ -10,6 +10,7 @@ import bca from "../../assets/img/logo bca.png";
 import bri from "../../assets/img/logo bri.png";
 import ovo from "../../assets/img/logo ovo.png";
 import Swal from "sweetalert2";
+import axiosApiIntances from "../../utils/axios";
 
 class paymentMethod extends Component {
   constructor(props) {
@@ -34,11 +35,43 @@ class paymentMethod extends Component {
         confirmButtonText: "Ok",
       });
     } else {
-      Swal.fire({
-        icon: "success",
-        title: "Success Payment",
-        confirmButtonText: "Ok",
-      });
+      const setData = {
+        userId: localStorage.user_id,
+        orderMovieName: localStorage.movie_name,
+        orderDate: localStorage.date,
+        orderTime: localStorage.hour,
+        orderCount: localStorage.seat.split(",").length,
+        orderSeats: localStorage.seat,
+        orderPrice: localStorage.premiere_price,
+        orderPremiereImage: localStorage.premiere_image,
+      };
+      axiosApiIntances
+        .post("orders", setData)
+        .then(() => {
+          Swal.showLoading();
+        })
+        .catch((err) => {
+          alert(err.response);
+        })
+        .finally(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Paid Successfully",
+            confirmButtonText: "Ok",
+            allowOutsideClick: false,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.props.history.push("/profile");
+              localStorage.removeItem("date");
+              localStorage.removeItem("premiere_name");
+              localStorage.removeItem("premiere_price");
+              localStorage.removeItem("premiere_image");
+              localStorage.removeItem("movie_name");
+              localStorage.removeItem("seat");
+              localStorage.removeItem("hour");
+            }
+          });
+        });
     }
   };
 
@@ -59,43 +92,71 @@ class paymentMethod extends Component {
               <img src={googlePay} alt="" />
             </div>
             <div
-              className={styles.visa}
+              className={
+                this.state.paymentMethod === "Visa"
+                  ? styles.visaSelected
+                  : styles.visa
+              }
               onClick={() => this.selectPaymentMethod("Visa")}
             >
               <img src={visa} alt="" />
             </div>
             <div
-              className={styles.gopay}
+              className={
+                this.state.paymentMethod === "Gopay"
+                  ? styles.gopaySelected
+                  : styles.gopay
+              }
               onClick={() => this.selectPaymentMethod("Gopay")}
             >
               <img src={gopay} alt="" />
             </div>
             <div
-              className={styles.paypal}
+              className={
+                this.state.paymentMethod === "Paypal"
+                  ? styles.paypalSelected
+                  : styles.paypal
+              }
               onClick={() => this.selectPaymentMethod("Paypal")}
             >
               <img src={paypal} alt="" />
             </div>
             <div
-              className={styles.dana}
+              className={
+                this.state.paymentMethod === "Dana"
+                  ? styles.danaSelected
+                  : styles.dana
+              }
               onClick={() => this.selectPaymentMethod("Dana")}
             >
               <img src={dana} alt="" />
             </div>
             <div
-              className={styles.bca}
+              className={
+                this.state.paymentMethod === "BCA"
+                  ? styles.bcaSelected
+                  : styles.bca
+              }
               onClick={() => this.selectPaymentMethod("BCA")}
             >
               <img src={bca} alt="" />
             </div>
             <div
-              className={styles.bri}
+              className={
+                this.state.paymentMethod === "BRI"
+                  ? styles.briSelected
+                  : styles.bri
+              }
               onClick={() => this.selectPaymentMethod("BRI")}
             >
               <img src={bri} alt="" />
             </div>
             <div
-              className={styles.ovo}
+              className={
+                this.state.paymentMethod === "Ovo"
+                  ? styles.ovoSelected
+                  : styles.ovo
+              }
               onClick={() => this.selectPaymentMethod("Ovo")}
             >
               <img src={ovo} alt="" />

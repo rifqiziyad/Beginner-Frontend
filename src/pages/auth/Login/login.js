@@ -28,7 +28,7 @@ class Login extends Component {
     event.preventDefault();
     this.props.login(this.state.form).then(() => {
       localStorage.setItem("token", this.props.auth.data.token);
-      localStorage.setItem("user_id", this.props.auth.data.user_id);
+
       this.props.history.push("/");
     });
   };

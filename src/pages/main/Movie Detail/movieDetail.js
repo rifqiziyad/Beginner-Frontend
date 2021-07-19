@@ -9,6 +9,7 @@ import imgDefault from "../../../assets/img/default.jpg";
 import { connect } from "react-redux";
 import { getMovieById } from "../../../redux/actions/movie";
 import axiosApiIntances from "../../../utils/axios";
+import Swal from "sweetalert2";
 
 class movieDetail extends Component {
   constructor() {
@@ -49,11 +50,18 @@ class movieDetail extends Component {
   };
 
   redirectedOrderPage = (image, name, price) => {
-    localStorage.setItem("premiere_image", image);
-    localStorage.setItem("premiere_name", name);
-    localStorage.setItem("premiere_price", price);
-    localStorage.setItem("hour", this.state.hour);
-    this.props.history.push("/order-page");
+    if (this.state.hour === "") {
+      Swal.fire({
+        title: "Select hour",
+        confirmButtonText: "Ok",
+      });
+    } else {
+      localStorage.setItem("premiere_image", image);
+      localStorage.setItem("premiere_name", name);
+      localStorage.setItem("premiere_price", price);
+      localStorage.setItem("hour", this.state.hour);
+      this.props.history.push("/order-page");
+    }
   };
 
   convertTime = (data) => {
@@ -74,7 +82,7 @@ class movieDetail extends Component {
     } = this.props.movieByid.dataMovie[0];
     return (
       <>
-        <NavBar />
+        <NavBar {...this.props} />
         <Container fluid className={styles.container}>
           <Row className={styles.row}>
             <Col md={3}>

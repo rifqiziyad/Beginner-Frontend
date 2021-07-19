@@ -23,7 +23,8 @@ class NavBar extends Component {
   };
 
   handleSignOut = () => {
-    localStorage.removeItem("token");
+    // localStorage.removeItem("token");
+    localStorage.clear();
     this.props.history.push("/");
   };
 

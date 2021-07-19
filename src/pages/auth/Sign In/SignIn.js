@@ -30,26 +30,32 @@ class SignIn extends Component {
 
   handleSignIn = (event) => {
     event.preventDefault();
+    let resData;
     this.props
       .login(this.state.form)
       .then((res) => {
-        localStorage.setItem("token", res.value.data.data.token);
-        Swal.fire({
-          icon: "success",
-          title: "Success Login",
-          confirmButtonText: "Ok",
-          allowOutsideClick: false,
-        }).then((result) => {
-          if (result.isConfirmed) {
-            this.props.history.push("/");
-          }
-        });
+        Swal.showLoading();
+        resData = res.value.data;
       })
       .catch((err) => {
         Swal.fire({
           icon: "error",
           title: err.response.data.msg,
           allowOutsideClick: false,
+        });
+      })
+      .finally(() => {
+        localStorage.setItem("token", resData.data.token);
+        localStorage.setItem("user_id", resData.data.user_id);
+        Swal.fire({
+          icon: "success",
+          title: resData.msg,
+          confirmButtonText: "Ok",
+          allowOutsideClick: false,
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.props.history.push("/");
+          }
         });
       });
   };
