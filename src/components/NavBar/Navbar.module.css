@@ -17,12 +17,17 @@
 }
 
 .navbar a:hover {
-  color: black;
+  color: #5f2eea;
+}
+
+.navLeft {
+  padding-left: 35px;
 }
 
 .linkBrand {
   color: #5f2eea !important;
   margin-right: 30px;
+  font-size: 25px;
 }
 
 .linkBrand a {

@@ -17,10 +17,11 @@ import movieDetail from "./pages/main/Movie Detail/movieDetail";
 import orderPage from "./pages/main/Order Page/orderPage";
 import Payment from "./pages/main/Payment Page/Payment";
 import paymentMethod from "./components/PaymentMethod/paymentMethod";
-import Admin from "./pages/main/Admin Page/Admin";
+import Admin from "./pages/main/Manage Movie/Admin";
 import SignIn from "./pages/auth/Sign In/SignIn";
 import Register from "./pages/auth/Register/Register";
 import Profile from "./pages/main/Profile Page/Profile";
+import dashboard from "./pages/main/Dashboard/dashboard";
 
 class App extends Component {
   render() {
@@ -74,9 +75,10 @@ class App extends Component {
                 exact
                 component={paymentMethod}
               />
-              <PrivateRoute path="/admin" exact component={Admin} />
+              <PrivateRoute path="/manage-movie" exact component={Admin} />
 
               <PrivateRoute path="/profile" exact component={Profile} />
+              <PrivateRoute path="/dashboard" exact component={dashboard} />
             </Switch>
           </Router>
         </PersistGate>

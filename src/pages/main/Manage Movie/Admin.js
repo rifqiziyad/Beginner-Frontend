@@ -9,7 +9,7 @@ import {
   Spinner,
   // Alert,
 } from "react-bootstrap";
-import NavbarAdmin from "../../../components/NavBar Admin/NavbarAdmin";
+import NavBar from "../../../components/NavBar/NavBar";
 import styles from "./Admin.module.css";
 import Footer from "../../../components/Footer/Footer";
 import CardAdmin from "../../../components/CardsAdmin/CardAdmin";
@@ -73,8 +73,6 @@ class Admin extends Component {
   };
 
   setUpdate = (data) => {
-    console.log("Set Update");
-    console.log(data);
     this.setState({
       isUpdate: true,
       id: data.movie_id,
@@ -94,7 +92,6 @@ class Admin extends Component {
 
   updateData = (event) => {
     event.preventDefault();
-    console.log("Update Data Berhasil");
     const {
       movieName,
       movieCategory,
@@ -246,7 +243,7 @@ class Admin extends Component {
     } = this.state.form;
     return (
       <>
-        <NavbarAdmin />
+        <NavBar />
 
         <Container fluid className={styles.container}>
           <Form

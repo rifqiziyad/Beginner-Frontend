@@ -5,6 +5,7 @@ import imgSearch from "../../assets/img/Search.png";
 import { Link } from "react-router-dom";
 import axiosApiIntances from "../../utils/axios";
 import imgDefault from "../../assets/img/default.jpg";
+import { connect } from "react-redux";
 
 class NavBar extends Component {
   constructor(props) {
@@ -60,17 +61,32 @@ class NavBar extends Component {
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
-              <Link className={styles.link} to="/">
-                Home
-              </Link>
-              <Link className={styles.link} to="/payment">
-                Payment
-              </Link>
-              <Link className={styles.link} to="/profile">
-                Profile
-              </Link>
-            </Nav>
+            {this.props.user.user_role === 0 ? (
+              <Nav className="mr-auto">
+                <Link className={styles.link} to="/">
+                  Home
+                </Link>
+                <Link className={styles.link} to="/payment">
+                  Payment
+                </Link>
+                <Link className={styles.link} to="/profile">
+                  Profile
+                </Link>
+              </Nav>
+            ) : (
+              <Nav className={`mr-auto ${styles.navLink}`}>
+                <Link className={styles.navLeft} to="/dashboard">
+                  Dashboard
+                </Link>
+                <Link className={styles.navLeft} to="/manage-movie">
+                  Manage Movie
+                </Link>
+                <Link className={styles.navLeft} to="#c">
+                  Manage Schedule
+                </Link>
+              </Nav>
+            )}
+
             <Form>
               <Row>
                 <Row className={styles.inputMovieName}>
@@ -157,4 +173,8 @@ class NavBar extends Component {
   }
 }
 
-export default NavBar;
+const mapStateToProps = (state) => ({
+  user: state.auth.data,
+});
+
+export default connect(mapStateToProps)(NavBar);
