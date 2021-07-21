@@ -1,4 +1,4 @@
-<h1 align='center'>React JS -TwoxOne</h1>
+<h1 align='center'>React JS -Ticket Sans</h1>
   <p align="center">
     <a href=#>View Demo</a>
     ·
@@ -7,7 +7,7 @@
     <a href="https://github.com/rifqiziyad/frontend-ticket-sans/pulls">Request Feature</a>
   </p>
 
-![Image Banner](src/assets/img/banner,.jpg)
+![Image Banner](src/assets/img/bannerm.png)
 
 ## About The Project
 
