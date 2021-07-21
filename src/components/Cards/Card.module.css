@@ -88,7 +88,15 @@
     width: 150px;
   }
 
+  .imgCard img {
+    height: 170px;
+  }
+
   .movieName {
     font-size: 14px;
+  }
+
+  .movieName {
+    height: 33px;
   }
 }

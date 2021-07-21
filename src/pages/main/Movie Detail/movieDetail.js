@@ -84,7 +84,7 @@ class movieDetail extends Component {
         <NavBar {...this.props} />
         <Container fluid className={styles.container}>
           <Row className={styles.row}>
-            <Col md={3}>
+            <Col md={3} className={styles.colImage}>
               <div className={styles.col1}>
                 {movie_image ? (
                   <img
@@ -193,7 +193,6 @@ class movieDetail extends Component {
             })}
           </div>
         </Container>
-
         <Footer />
       </>
     );

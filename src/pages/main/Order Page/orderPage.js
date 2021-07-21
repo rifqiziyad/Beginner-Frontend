@@ -90,7 +90,7 @@ class Payment extends Component {
         <NavBar {...this.props} />
         <Container fluid className={styles.container}>
           <Row className={styles.row1}>
-            <Col className={styles.col1} xs={7}>
+            <Col className={styles.col1} md={8}>
               <h2>Movie Selected</h2>
               <div className={styles.movieSelected}>
                 <h2>{movie_name}</h2>
@@ -159,8 +159,6 @@ class Payment extends Component {
                       <p>6</p>
                       <p>7</p>
                     </Col>
-                    {/* <Col md={1}></Col> */}
-                    {/* <Col md={1}></Col> */}
                     <Col md={6} className={styles.numberRight}>
                       <p>8</p>
                       <p>9</p>
@@ -190,7 +188,7 @@ class Payment extends Component {
                 </Link>
               </div>
             </Col>
-            <Col className={styles.col2} xs={4}>
+            <Col className={styles.col2}>
               <h2 className={styles.orderInfo}>Order Info</h2>
               <div className={styles.sideRight}>
                 <img

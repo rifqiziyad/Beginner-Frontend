@@ -1,14 +1,5 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  Button,
-  Dropdown,
-  Spinner,
-  // Alert,
-} from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Spinner } from "react-bootstrap";
 import NavBar from "../../../components/NavBar/NavBar";
 import styles from "./Admin.module.css";
 import Footer from "../../../components/Footer/Footer";
@@ -44,6 +35,8 @@ class Admin extends Component {
       // isLoading: false,
       page: 1,
       limit: 4,
+      search: "",
+      sort: "movie_id ASC",
       id: "",
     };
   }
@@ -52,10 +45,15 @@ class Admin extends Component {
     this.getData();
   }
 
+  componentDidUpdate(_, prevState) {
+    if (this.state.sort !== prevState.sort) {
+      this.getData();
+    }
+  }
+
   getData = () => {
-    console.log("Get Data !");
-    const { page, limit } = this.state;
-    this.props.getAllMovie(page, limit);
+    const { page, limit, search, sort } = this.state;
+    this.props.getAllMovie(page, limit, search, sort);
     // this.setState({ isLoading: true });
     // axiosApiIntances
     //   .get(`movie?page=${page}&limit=${limit}&search=&sort=movie_id ASC`)
@@ -112,10 +110,10 @@ class Admin extends Component {
     formData.append("durationMinute", durationMinute);
     formData.append("movieSynopsis", movieSynopsis);
     formData.append("movieDirector", movieDirector);
-    formData.append("dataImage", dataImage);
-    for (var pair of formData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
+    formData.append("image", dataImage);
+    // for (var pair of formData.entries()) {
+    //   console.log(pair[0] + ", " + pair[1]);
+    // }
     // proses reqeust patch movie
     window.confirm("Yakin Ingin Update")
       ? this.props.updateMovie(formData, this.state.id).then(() => {
@@ -173,7 +171,7 @@ class Admin extends Component {
     formData.append("durationMinute", durationMinute);
     formData.append("movieSynopsis", movieSynopsis);
     formData.append("movieDirector", movieDirector);
-    formData.append("dataImage", dataImage);
+    formData.append("image", dataImage);
     // for (var pair of formData.entries()) {
     //   console.log(pair[0] + ", " + pair[1]);
     // }
@@ -224,6 +222,10 @@ class Admin extends Component {
     this.setState({ page: selectedPage }, () => {
       this.getData();
     });
+  };
+
+  handleSort = (event) => {
+    this.setState({ sort: event.target.value });
   };
 
   render() {
@@ -391,42 +393,16 @@ class Admin extends Component {
             </Row>
           </Form>
           <Row className={styles.row2}>
-            <Col className={styles.h2} md={8}>
-              Date Movie
-            </Col>
-            <Col>
-              <Row>
-                <Col md={3}>
-                  <Dropdown>
-                    <Dropdown.Toggle
-                      className={styles.sort}
-                      variant="light"
-                      id="dropdown-basic"
-                    >
-                      Sort
-                    </Dropdown.Toggle>
+            <Col className={styles.h2}>Date Movie</Col>
 
-                    <Dropdown.Menu>
-                      <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Another action
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Something else
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </Col>
-                <Col className={styles.inputMovieName}>
-                  <Form.Control
-                    type="text"
-                    name="Search"
-                    placeholder="Search Movie Name..."
-                    className={styles.inputName}
-                  />
-                </Col>
-              </Row>
-            </Col>
+            <select className={styles.select} onChange={this.handleSort}>
+              <option value="movie_release_date DESC">
+                Realesa Date Latest
+              </option>
+              <option value="movie_release_date ASC">
+                Release Date Longest
+              </option>
+            </select>
           </Row>
           <Col className={styles.cards}>
             {isLoading ? (

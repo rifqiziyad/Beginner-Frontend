@@ -1,6 +1,50 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 
+@media only screen and (max-width: 600px) {
+  .containerp {
+    padding: 20px !important;
+    margin: 0;
+  }
+
+  .row {
+    padding: 0 !important;
+    margin: 0;
+  }
+
+  .col1 {
+    width: 100% !important;
+    padding: 10px 25px !important;
+  }
+
+  .colProfile {
+    width: 100%;
+    padding: 0;
+  }
+
+  .image img {
+    width: 70px !important;
+    height: 70px !important;
+  }
+
+  .navTop {
+    display: none;
+  }
+
+  .col2 {
+    padding: 0 !important;
+    margin: 0;
+  }
+
+  .detailInfo {
+    margin: 0 !important;
+  }
+
+  .inputInfo {
+    font-size: 12px;
+  }
+}
+
 .containerp {
   background-color: rgb(235, 236, 238);
   padding: 60px 0;

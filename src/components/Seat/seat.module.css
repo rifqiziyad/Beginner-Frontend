@@ -25,3 +25,10 @@
 .seatSold {
   background-color: #6e7191;
 }
+
+@media only screen and (max-width: 600px) {
+  .seat {
+    width: 15px;
+    height: 15px;
+  }
+}

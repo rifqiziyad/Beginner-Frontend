@@ -6,7 +6,6 @@ import { Col, Button } from "react-bootstrap";
 class Cards2 extends Component {
   handleMovieDetail = (id) => {
     // this.props.history.push(`/movie-detail/${id}`);
-    console.log(this.props);
   };
   render() {
     const { movie_id, movie_name, movie_category, movie_image } =

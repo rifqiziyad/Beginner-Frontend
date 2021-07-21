@@ -75,18 +75,14 @@ class Profile extends Component {
   };
 
   render() {
-    const {
-      userFirstName,
-      userLastName,
-      userEmail,
-      userPhoneNumber,
-    } = this.state.form;
+    const { userFirstName, userLastName, userEmail, userPhoneNumber } =
+      this.state.form;
     return (
       <>
         <NavBar />
         <Container fluid className={styles.containerp}>
           <Row className={styles.row}>
-            <Col xs={3}>
+            <Col xs={3} className={styles.colProfile}>
               <Col className={styles.col1}>
                 <Row className={styles.info}>
                   <p>INFO</p>
@@ -154,7 +150,7 @@ class Profile extends Component {
                 </Button>
               </Form>
 
-              <Form>
+              {/* <Form>
                 <Col className={styles.account}>
                   <Col className="col-md-12 account">Account and Privacy</Col>
                   <hr />
@@ -172,7 +168,7 @@ class Profile extends Component {
                 <Button className={styles.btn} variant="light">
                   Update Changes
                 </Button>
-              </Form>
+              </Form> */}
             </Col>
           </Row>
         </Container>

@@ -71,6 +71,14 @@
     width: 150px;
   }
 
+  .imgCard img {
+    height: 170px;
+  }
+
+  .movieName {
+    height: 34px;
+  }
+
   .movieName {
     font-size: 14px;
   }

@@ -1,10 +1,10 @@
 import axiosApiIntances from "../../utils/axios";
 
-export const getAllMovie = (page, limit) => {
+export const getAllMovie = (page, limit, search, sort) => {
   return {
     type: "GET_ALL_MOVIE",
     payload: axiosApiIntances.get(
-      `movie?page=${page}&limit=${limit}&search=&sort=movie_id DESC`
+      `movie?page=${page}&limit=${limit}&search=${search}&sort=${sort}`
     ),
   };
 };

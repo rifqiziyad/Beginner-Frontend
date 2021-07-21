@@ -127,3 +127,10 @@
   margin-left: 20px;
   margin-top: 5px;
 }
+
+@media only screen and (max-width: 600px) {
+  .container {
+    border: red solid 1px;
+    padding: 30px;
+  }
+}

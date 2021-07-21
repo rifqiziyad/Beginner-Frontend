@@ -132,3 +132,10 @@
 .btnPrev {
   text-decoration: none;
 }
+
+@media only screen and (max-width: 600px) {
+  .btn {
+    font-size: 15px;
+    padding: 10px 20px;
+  }
+}
