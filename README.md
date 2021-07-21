@@ -7,7 +7,7 @@
     <a href="https://github.com/rifqiziyad/frontend-ticket-sans/pulls">Request Feature</a>
   </p>
 
-![Image Banner](src/assets/img/bannerm.png)
+![Image Banner](src/assets/img/bannerm.jpg)
 
 ## About The Project
 
