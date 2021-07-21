@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import Footer from "../../../components/Footer/Footer";
 import NavBar from "../../../components/NavBar/NavBar";
-import { Container, Row, Col, Form, NavDropdown } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import styles from "./movieDetail.module.css";
-import logoLocation from "../../../assets/img/logo location.png";
 import moment from "moment";
 import imgDefault from "../../../assets/img/default.jpg";
 import { connect } from "react-redux";
@@ -130,34 +129,6 @@ class movieDetail extends Component {
             </Col>
           </Row>
 
-          <div className={styles.showtimes}>
-            <h2>Showtimes and Tickets</h2>
-            <Row className={styles.dateLocation}>
-              <div>
-                <Form.Control type="date" name="premiereDate" />
-              </div>
-              <div className={styles.location}>
-                <img src={logoLocation} alt="logoLocation" />
-                <NavDropdown
-                  className={styles.titleLocation}
-                  title="Location"
-                  id="basic-nav-dropdown"
-                >
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    Something
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </div>
-            </Row>
-          </div>
           <div className={styles.cards}>
             {this.state.premiereData.map((item, index) => {
               return (
@@ -174,25 +145,29 @@ class movieDetail extends Component {
                   </div>
                   <hr />
                   <div className={styles.showTime}>
-                    {item.show_time.map((it, ind) => {
-                      return (
-                        <div
-                          className={
-                            this.state.hour ===
-                              this.convertTime(it.show_time_clock) &&
-                            it.premiere_id === this.state.premiere_id
-                              ? styles.clickTime
-                              : styles.time
-                          }
-                          key={ind}
-                          onClick={() => {
-                            this.handleClock(it);
-                          }}
-                        >
-                          <h3>{this.convertTime(it.show_time_clock)}</h3>
-                        </div>
-                      );
-                    })}
+                    {item.show_time.length <= 0 ? (
+                      <h5>Tidak Tersedia</h5>
+                    ) : (
+                      item.show_time.map((it, ind) => {
+                        return (
+                          <div
+                            className={
+                              this.state.hour ===
+                                this.convertTime(it.show_time_clock) &&
+                              it.premiere_id === this.state.premiere_id
+                                ? styles.clickTime
+                                : styles.time
+                            }
+                            key={ind}
+                            onClick={() => {
+                              this.handleClock(it);
+                            }}
+                          >
+                            <h3>{this.convertTime(it.show_time_clock)}</h3>
+                          </div>
+                        );
+                      })
+                    )}
                   </div>
                   <div className={styles.price}>
                     <h1>Price</h1>

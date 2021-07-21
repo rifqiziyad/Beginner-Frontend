@@ -20,11 +20,9 @@ class NavBar extends Component {
 
   handleSignIn = () => {
     this.props.history.push("/register");
-    console.log("Sign In");
   };
 
   handleSignOut = () => {
-    // localStorage.removeItem("token");
     localStorage.clear();
     this.props.history.push("/");
   };
@@ -47,8 +45,10 @@ class NavBar extends Component {
   };
 
   handleCancel = () => {
-    this.setState({ isShow: false });
-    this.setState({ search: "" });
+    if (this.state.isShow) {
+      this.setState({ isShow: false });
+      this.setState({ search: "" });
+    }
   };
 
   render() {
@@ -97,7 +97,7 @@ class NavBar extends Component {
                         ? styles.imgSearchMovie
                         : styles.inputCancel
                     }
-                    onClick={isShow && this.handleCancel}
+                    onClick={this.handleCancel}
                   >
                     {isShow === false ? (
                       <img
@@ -114,6 +114,7 @@ class NavBar extends Component {
                     <Form.Control
                       type="text"
                       name="search"
+                      value={this.state.search}
                       placeholder="Search Movie Name..."
                       className={styles.inputName}
                       onChange={(event) => this.changeText(event)}

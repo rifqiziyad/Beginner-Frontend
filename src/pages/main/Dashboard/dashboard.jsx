@@ -15,20 +15,44 @@ class dashboard extends Component {
       premiereName: "",
       locationName: "",
       dataIncome: [],
-      monthsList: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Agu",
-        "Sep",
-        "Okt",
-        "Nov",
-        "Des",
-      ],
+      totalData: [],
+
+      months: {
+        labels: [
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr",
+          "May",
+          "Jun",
+          "Jul",
+          "Agu",
+          "Sep",
+          "Okt",
+          "Nov",
+          "Des",
+        ],
+        datasets: [
+          {
+            label: "Dataset of Months",
+            lineTension: 0.1,
+            backgroundColor: "white",
+            borderColor: "#5f2eea",
+            borderDash: [],
+            borderDashOffset: 1,
+            pointBorderColor: "#5f2eea",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 7,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "#5f2eea",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [],
+          },
+        ],
+      },
     };
   }
 
@@ -36,30 +60,54 @@ class dashboard extends Component {
     this.getDataChart();
   }
 
-
-
   getDataChart = () => {
     axiosApiIntances
       .get(
         `orders?movieName=${this.state.movieName}&premiereName=${this.state.premiereName}&locationName=${this.state.locationName}`
       )
       .then((res) => {
-        res.data.data.map((item) => {
-          return this.setState({
-            dataIncome: [
-              ...this.state.dataIncome,
-              {
-                month: moment(item.date).format("ll").split(" ")[0],
-                data: item.data,
-              },
-            ],
-          });
+        let data = res.data.data.map((item) => {
+          return {
+            month: moment(item.date).format("ll").split(" ")[0],
+            data: item.data,
+          };
+        });
+        const dataIncome = data;
+        let dataChart = [];
+        for (const i of this.state.months.labels) {
+          let res = 0;
+          for (const j of dataIncome) {
+            if (i === j.month) {
+              res += 1;
+              dataChart.push(j.data);
+            }
+          }
+          if (res === 0) {
+            dataChart.push(0);
+          }
+        }
+        let result = { ...this.state.months.datasets[0], data: dataChart };
+        this.setState({
+          months: {
+            labels: this.state.months.labels,
+            datasets: [result],
+          },
         });
       })
       .catch((err) => {
         alert(err.response);
       });
   };
+
+  componentDidUpdate(_, prevState) {
+    if (
+      this.state.movieName !== prevState.movieName ||
+      this.state.premiereName !== prevState.premiereName ||
+      this.state.locationName !== prevState.locationName
+    ) {
+      this.getDataChart();
+    }
+  }
 
   handleFilter = (select) => {
     if (select === "selectMovie") {
@@ -76,55 +124,12 @@ class dashboard extends Component {
     }
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.getDataChart();
+  handleReset = () => {
+    this.setState({ movieName: "", premiereName: "", locationName: "" });
   };
 
   render() {
-    console.log(this.state);
-
-    const dataFortChart = () => {
-      let data = [];
-      for (const i of this.state.monthsList) {
-        let res = 0;
-        for (const j of this.state.dataIncome) {
-          if (i === j.month) {
-            res += 1;
-            data.push(j.data);
-          }
-        }
-        if (res === 0) {
-          data.push(0);
-        }
-      }
-      return data;
-    };
-
-    const data = dataFortChart();
-    const months = {
-      labels: this.state.monthsList,
-      datasets: [
-        {
-          label: "Dataset of Months",
-          lineTension: 0.1,
-          backgroundColor: "white",
-          borderColor: "#5f2eea",
-          borderDash: [],
-          borderDashOffset: 1,
-          pointBorderColor: "#5f2eea",
-          pointBackgroundColor: "#fff",
-          pointBorderWidth: 7,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "#5f2eea",
-          pointHoverBorderColor: "rgba(220,220,220,1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: data,
-        },
-      ],
-    };
+    console.log(this.state.months.datasets[0].data);
     return (
       <>
         <NavBar />
@@ -133,7 +138,7 @@ class dashboard extends Component {
             <div className={styles.sideLeft}>
               <h1>Dashboard</h1>
               <div>
-                <Line data={months} />
+                <Line data={this.state.months} />
               </div>
             </div>
             <div className={styles.sideRight}>
@@ -146,10 +151,8 @@ class dashboard extends Component {
                     className={styles.selectCss}
                   >
                     <option value="">All Movie</option>
-                    <option value="Spider-Man: No Way Home">
-                      Spider-Man: No Way Home
-                    </option>
-                    <option value="Jumanji: Welcome to the Jungle">
+                    <option value="SpiderMan">Spider-Man: No Way Home</option>
+                    <option value="Jumanji">
                       Jumanji: Welcome to the Jungle
                     </option>
                     <option value="Superman">Superman</option>
@@ -178,14 +181,12 @@ class dashboard extends Component {
                     <option value="Cinangka">Cinangka</option>
                     <option value="Bintaro">Bintaro</option>
                   </select>
+
                   <button
-                    onClick={this.handleSubmit}
-                    type="submit"
-                    className={styles.btnFilter}
+                    type="reset"
+                    className={styles.btnReset}
+                    onClick={this.handleReset}
                   >
-                    Filter
-                  </button>
-                  <button type="submit" className={styles.btnReset}>
                     Reset
                   </button>
                 </form>

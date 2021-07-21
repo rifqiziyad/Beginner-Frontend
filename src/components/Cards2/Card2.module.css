@@ -5,6 +5,7 @@
 }
 
 .imgCard {
+  width: 250px;
   background: #ffffff;
   border: 0.5px solid #dedede;
   padding: 15px;

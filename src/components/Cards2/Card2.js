@@ -11,11 +11,10 @@ class Cards2 extends Component {
   render() {
     const { movie_id, movie_name, movie_category, movie_image } =
       this.props.data;
-    // console.log(this.props.data);
     return (
       <>
         <Col className={styles.imgCard}>
-          {movie_image.length > 0 ? (
+          {movie_image ? (
             <img
               src={"http://localhost:3001/backend1/api/" + movie_image}
               alt=""

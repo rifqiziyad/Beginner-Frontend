@@ -180,7 +180,6 @@ class Admin extends Component {
 
     // proses reqeust post movie
     this.props.createMovie(formData).then((res) => {
-      // console.log(res);
       alert(res.value.data.msg);
       this.getData();
       this.resetData();
