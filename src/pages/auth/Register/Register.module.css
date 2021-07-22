@@ -1,6 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 
+@media only screen and (max-width: 600px) {
+  .col1 {
+    display: none;
+  }
+
+  .container {
+    padding: 40px;
+    height: 100vh;
+  }
+
+  .rowMain {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 !important;
+    padding: 0px !important;
+  }
+
+  .col2 {
+    padding: 0px !important;
+  }
+}
+
 .rowMain {
   display: flex;
   justify-content: center;

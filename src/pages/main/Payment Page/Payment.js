@@ -12,8 +12,13 @@ class Payment extends Component {
     super(props);
     this.state = {
       dataUser: this.props.auth.data,
+      seat: localStorage.getItem("seat")
+        ? localStorage.getItem("seat").split(",").length
+        : 0,
     };
   }
+
+  componentDidMount() {}
 
   render() {
     const { user_name, user_email, user_phone_number } = this.state.dataUser;
@@ -43,14 +48,14 @@ class Payment extends Component {
                 </div>
                 <div className={styles.numberTicket}>
                   <h5>Number of ticket</h5>
-                  <p>{localStorage.getItem("seat").split(",").length} pieces</p>
+                  <p>{this.state.seat} pieces</p>
                 </div>
                 <div className={styles.total}>
                   <h5>Total payment</h5>
                   <p>
                     $
                     {parseInt(localStorage.getItem("premiere_price")) *
-                      parseInt(localStorage.getItem("seat").split(",").length)}
+                      parseInt(this.state.seat)}
                   </p>
                 </div>
               </div>

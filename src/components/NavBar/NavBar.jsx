@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import axiosApiIntances from "../../utils/axios";
 import imgDefault from "../../assets/img/default.jpg";
 import { connect } from "react-redux";
+import Swal from "sweetalert2";
 
 class NavBar extends Component {
   constructor(props) {
@@ -17,6 +18,8 @@ class NavBar extends Component {
       id: "",
     };
   }
+
+  componentDidMount() {}
 
   handleSignIn = () => {
     this.props.history.push("/register");
@@ -51,6 +54,22 @@ class NavBar extends Component {
     }
   };
 
+  handlePayment = () => {
+    if (localStorage.getItem("seat") === null) {
+      Swal.fire({
+        title: "Please select movie and seat first",
+        confirmButtonText: "Ok",
+        allowOutsideClick: false,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.props.history.push("/");
+        }
+      });
+    } else {
+      this.props.history.push("/payment");
+    }
+  };
+
   render() {
     const { isShow } = this.state;
     return (
@@ -66,7 +85,7 @@ class NavBar extends Component {
                 <Link className={styles.link} to="/">
                   Home
                 </Link>
-                <Link className={styles.link} to="/payment">
+                <Link className={styles.link} onClick={this.handlePayment}>
                   Payment
                 </Link>
                 <Link className={styles.link} to="/profile">
@@ -88,7 +107,7 @@ class NavBar extends Component {
             )}
 
             <Form>
-              <Row>
+              <Row className={styles.input}>
                 <Row className={styles.inputMovieName}>
                   <Col
                     md={2}

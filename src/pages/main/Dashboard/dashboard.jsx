@@ -129,7 +129,6 @@ class dashboard extends Component {
   };
 
   render() {
-    console.log(this.state.months.datasets[0].data);
     return (
       <>
         <NavBar />

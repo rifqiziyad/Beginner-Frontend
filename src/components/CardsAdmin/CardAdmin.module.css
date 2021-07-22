@@ -65,3 +65,18 @@
   background-color: rgb(206, 0, 0);
   border-color: red;
 }
+
+@media only screen and (max-width: 600px) {
+  .imgCard {
+    width: 150px;
+    padding: 10px;
+  }
+
+  .imgCard img {
+    height: 180px;
+  }
+
+  .movieName {
+    font-size: 13px;
+  }
+}

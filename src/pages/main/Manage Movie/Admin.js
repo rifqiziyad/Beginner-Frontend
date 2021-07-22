@@ -4,7 +4,6 @@ import NavBar from "../../../components/NavBar/NavBar";
 import styles from "./Admin.module.css";
 import Footer from "../../../components/Footer/Footer";
 import CardAdmin from "../../../components/CardsAdmin/CardAdmin";
-// import axiosApiIntances from "../../../utils/axios";
 import ReactPaginate from "react-paginate";
 import { connect } from "react-redux";
 import {
@@ -29,10 +28,8 @@ class Admin extends Component {
         movieDirector: "",
         dataImage: null,
       },
-      // data: [],
       pagination: {},
       isUpdate: false,
-      // isLoading: false,
       page: 1,
       limit: 4,
       search: "",
@@ -245,7 +242,6 @@ class Admin extends Component {
     return (
       <>
         <NavBar />
-
         <Container fluid className={styles.container}>
           <Form
             onSubmit={isUpdate ? this.updateData : this.submitData}

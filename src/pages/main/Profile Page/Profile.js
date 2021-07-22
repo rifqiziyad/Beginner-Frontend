@@ -79,7 +79,7 @@ class Profile extends Component {
       this.state.form;
     return (
       <>
-        <NavBar />
+        <NavBar {...this.props} />
         <Container fluid className={styles.containerp}>
           <Row className={styles.row}>
             <Col xs={3} className={styles.colProfile}>

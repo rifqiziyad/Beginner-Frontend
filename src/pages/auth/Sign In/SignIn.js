@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import backgroundMarvel from "../../../assets/img/marvel.png";
 import styles from "./SignIn.module.css";
-import logoGoogle from "../../../assets/img/google-logo.png";
-import logoFacebook from "../../../assets/img/facebook- logo.png";
 import { connect } from "react-redux";
 import { login } from "../../../redux/actions/auth";
 import Swal from "sweetalert2";
@@ -106,20 +104,6 @@ class SignIn extends Component {
                 <Button className={styles.submit} type="submit">
                   Sign In
                 </Button>
-                <p className={styles.forgot}>
-                  Forgot your password? <span>Reset now</span>
-                </p>
-                <p className={styles.or}>Or</p>
-                <div className={styles.account}>
-                  <div className={styles.google}>
-                    <img src={logoGoogle} alt="" />
-                    <p>Google</p>
-                  </div>
-                  <div className={styles.facebook}>
-                    <img src={logoFacebook} alt="" />
-                    <p>Facebook</p>
-                  </div>
-                </div>
               </Form>
             </Col>
           </Row>

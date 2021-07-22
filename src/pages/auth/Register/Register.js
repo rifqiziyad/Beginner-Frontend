@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import backgroundMarvel from "../../../assets/img/marvel.png";
 import styles from "./Register.module.css";
-import logoGoogle from "../../../assets/img/google-logo.png";
-import logoFacebook from "../../../assets/img/facebook- logo.png";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { register } from "../../../redux/actions/auth";
@@ -123,17 +121,6 @@ class Register extends Component {
                 <p className={styles.forgot}>
                   Do you already have an account? <Link to="/login">Login</Link>
                 </p>
-                <p className={styles.or}>Or</p>
-                <div className={styles.account}>
-                  <div className={styles.google}>
-                    <img src={logoGoogle} alt="" />
-                    <p>Google</p>
-                  </div>
-                  <div className={styles.facebook}>
-                    <img src={logoFacebook} alt="" />
-                    <p>Facebook</p>
-                  </div>
-                </div>
               </Form>
             </Col>
           </Row>

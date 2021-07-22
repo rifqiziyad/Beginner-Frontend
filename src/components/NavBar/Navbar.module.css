@@ -145,30 +145,64 @@
 
 @media only screen and (max-width: 1000px) {
   .navbar {
-    padding: 20px;
+    padding: 20px !important;
   }
   .navLeft,
   .navRight {
     margin: 0;
   }
 
-  .link {
-    margin: 0;
-    margin-bottom: 10px;
+  .link,
+  .navLeft {
+    margin: 0 !important;
+    margin-bottom: 15px !important;
+    padding: 0 !important;
   }
 
   .imgSearchMovie {
-    display: none;
+    border: black solid 1px;
+    display: flex !important;
+  }
+
+  .imgSearchMovie img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .inputCancel {
+    display: flex;
+    justify-content: center;
   }
 
   .inputMovieName {
-    width: 300px;
+    width: 40%;
+    margin: 0;
+  }
+
+  .input {
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .button {
+    margin: 0;
+    margin-top: 10px;
+    font-size: 13px;
+    padding: 5px;
+    width: 30%;
+  }
+
+  .getMovieSearch {
+    margin: 20px 0;
   }
 }
 
 @media only screen and (max-width: 600px) {
   .navbar {
-    padding: 20px;
+    padding: 20px !important;
+    display: flex;
+    align-items: center;
   }
 
   .navLeft {
@@ -180,13 +214,36 @@
     margin-bottom: 10px;
   }
 
-  .imgSearchMovie {
-    display: none;
+  .inputMovieName {
+    width: 70%;
+    margin: 0;
+    display: flex !important;
   }
 
-  .location a {
-    padding: 0;
-    margin-top: 10px;
+  .imgSearchMovie {
+    display: flex !important;
+  }
+
+  .imgSearchMovie img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .inputSearch {
+    width: 70%;
+  }
+
+  .inputCancel {
+    display: flex;
+    justify-content: center;
+  }
+
+  .button {
+    font-size: 15px;
+  }
+
+  .getMovieSearch {
+    margin: 20px 0;
   }
 }
 

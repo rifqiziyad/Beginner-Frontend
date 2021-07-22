@@ -110,3 +110,35 @@ button.btnReset:hover {
   border-color: #381d83;
   background-color: #381d83;
 }
+
+@media only screen and (max-width: 600px) {
+  .container {
+    padding: 40px;
+  }
+
+  .rowContent {
+    flex-direction: column-reverse;
+  }
+
+  .sideLeft,
+  .sideRight {
+    width: 100%;
+  }
+
+  .selectFilter {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .selectCss {
+    width: 30%;
+    font-size: 13px !important;
+    padding: 10px !important;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 13px !important;
+  }
+}
