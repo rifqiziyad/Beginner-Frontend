@@ -19,7 +19,9 @@ class Cards extends Component {
         <Col className={styles.imgCard}>
           {movie_image.length > 0 ? (
             <img
-              src={"http://localhost:3001/backend1/api/" + movie_image}
+              src={
+                "https://ticket-sans.herokuapp.com/backend1/api/" + movie_image
+              }
               alt=""
             />
           ) : (

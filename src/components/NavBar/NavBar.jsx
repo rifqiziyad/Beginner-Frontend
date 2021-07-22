@@ -169,7 +169,7 @@ class NavBar extends Component {
                       {item.movie_image ? (
                         <img
                           src={
-                            "http://localhost:3001/backend1/api/" +
+                            "https://ticket-sans.herokuapp.com/backend1/api/" +
                             item.movie_image
                           }
                           alt=""

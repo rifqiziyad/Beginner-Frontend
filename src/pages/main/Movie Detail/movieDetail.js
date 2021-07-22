@@ -88,7 +88,7 @@ class movieDetail extends Component {
               <div className={styles.col1}>
                 {movie_image ? (
                   <img
-                    src={`http://localhost:3001/backend1/api/${movie_image}`}
+                    src={`https://ticket-sans.herokuapp.com/backend1/api/${movie_image}`}
                     alt=""
                   />
                 ) : (
@@ -135,7 +135,7 @@ class movieDetail extends Component {
                 <div className={styles.cinemaCard} key={index}>
                   <div className={styles.cinema}>
                     <img
-                      src={`http://localhost:3001/backend1/api/${item.premiere_image}`}
+                      src={`https://ticket-sans.herokuapp.com/backend1/api/${item.premiere_image}`}
                       alt=""
                     />
                     <div className={styles.address}>

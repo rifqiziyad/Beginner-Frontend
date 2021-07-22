@@ -192,7 +192,7 @@ class Payment extends Component {
               <h2 className={styles.orderInfo}>Order Info</h2>
               <div className={styles.sideRight}>
                 <img
-                  src={`http://localhost:3001/backend1/api/${localStorage.getItem(
+                  src={`https://ticket-sans.herokuapp.com/backend1/api/${localStorage.getItem(
                     "premiere_image"
                   )}`}
                   alt="Cinema One 21"
