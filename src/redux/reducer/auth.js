@@ -24,7 +24,7 @@ const auth = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        isError: false,
+        isError: true,
         data: {},
         msg: action.payload.response.data.msg,
       };
@@ -44,7 +44,7 @@ const auth = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        isError: false,
+        isError: true,
         msg: action.payload.response.data.msg,
       };
     default:
