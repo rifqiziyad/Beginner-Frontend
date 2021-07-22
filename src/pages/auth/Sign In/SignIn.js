@@ -28,26 +28,15 @@ class SignIn extends Component {
 
   handleSignIn = (event) => {
     event.preventDefault();
-    let resData;
     this.props
       .login(this.state.form)
       .then((res) => {
-        Swal.showLoading();
-        resData = res.value.data;
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: err.response.data.msg,
-          allowOutsideClick: false,
-        });
-      })
-      .finally(() => {
-        localStorage.setItem("token", resData.data.token);
-        localStorage.setItem("user_id", resData.data.user_id);
+        console.log(res);
+        localStorage.setItem("token", res.value.data.data.token);
+        localStorage.setItem("user_id", res.value.data.data.user_id);
         Swal.fire({
           icon: "success",
-          title: resData.msg,
+          title: res.value.data.msg,
           confirmButtonText: "Ok",
           allowOutsideClick: false,
         }).then((result) => {
@@ -55,10 +44,20 @@ class SignIn extends Component {
             this.props.history.push("/");
           }
         });
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: err.response.data.msg,
+          allowOutsideClick: false,
+        });
       });
   };
 
   render() {
+    if (this.props.auth.isLoading === true) {
+      Swal.showLoading();
+    }
     const { userEmail, userPassword } = this.state;
     return (
       <>
