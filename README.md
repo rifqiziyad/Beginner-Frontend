@@ -1,6 +1,6 @@
 <h1 align='center'>React JS -Ticket Sans</h1>
   <p align="center">
-    <a href=#>View Demo</a>
+    <a href="https://ticketsans.netlify.app/">View Demo</a>
     ·
     <a href="https://github.com/rifqiziyad/frontend-ticket-sans/issues">Report Bug</a>
     ·
